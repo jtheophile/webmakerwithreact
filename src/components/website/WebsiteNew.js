@@ -5,7 +5,6 @@ export default class WebsiteNew extends Component {
   render() {
     return (
       <div>
-        <div className="container">
           <nav className="navbar navbar-dark bg-primary fixed-top row">
             <div className="col-lg-4 d-none d-lg-block">
               <a href="website-list.html"><i className="fas fa-chevron-left"></i></a>
@@ -40,6 +39,7 @@ export default class WebsiteNew extends Component {
                   </li>
                 </ul>
               </div>
+              </div>
               <div className="col-lg-8">
                 <div className="container">
                   <form>
@@ -54,12 +54,16 @@ export default class WebsiteNew extends Component {
                         name="description"></textarea>
                     </div>
                   </form>
-
-                  <nav className="navbar navbar-dark bg-primary fixed-bottom">
-                    <Link className="navbar-brand"></Link>
-                    <Link href="../user/profile.html" className="fas fa-user"></Link>
-                  </nav>
-                </div>              
-              )
+                </div>
+              </div>
+            </section>
+            
+                <nav className="navbar navbar-dark bg-primary fixed-bottom">
+                <div className="full-width">
+                  <Link to="/../user/profile.html" className="fas fa-user"></Link>
+                    </div>
+                </nav>
+              </div>
+                )
+              }
             }
-          }

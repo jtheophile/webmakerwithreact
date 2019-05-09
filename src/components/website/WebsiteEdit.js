@@ -4,7 +4,6 @@ export default class WebsiteEdit extends Component {
   render() {
     return (
       <div>
-      <div>
         <nav className="navbar navbar-dark bg-primary fixed-top row">
         <div className="col-lg-4 d-none d-lg-block">
             <a href="website-list.html"><i className="fas fa-chevron-left"></i></a>
@@ -45,7 +44,6 @@ export default class WebsiteEdit extends Component {
         </div>
 
         {/* <!-- BODY RIGHT --> */}
-    <section className="row">
         <div className="col-lg-8">
             <div className="container">
                 <form>
@@ -65,7 +63,6 @@ export default class WebsiteEdit extends Component {
             </div>    
         </div>
     </section>
-    <div>
         <nav className="navbar navbar-dark bg-primary fixed-bottom">
             <a className="navbar-brand"></a>
             <a href="../user/profile.html" className="fas fa-user"></a>

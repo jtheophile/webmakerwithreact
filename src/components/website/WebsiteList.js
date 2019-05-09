@@ -6,7 +6,7 @@ export default class WebsiteList extends Component {
       <div>
         <div className="container">
         <nav className="navbar navbar-dark bg-primary fixed-top">
-            <a href="../user/profile.html" className="fas fa-chevron-left"></a>
+            <a href="../user/profile.html"><i className="fas fa-chevron-left"></i></a>
             <div className="website">
                 <a className="float-left" className="navbar-brand" href="website-list.html">Websites</a>
             </div>
