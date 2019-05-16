@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 
 export default class Profile extends Component {
 
@@ -65,7 +65,7 @@ export default class Profile extends Component {
         </nav> 
         <form id="profileForm" onSubmit={this.onSubmit}>
             <div className="form-group">
-                <label for="username">Username</label> 
+                <label htmlFor="username">Username</label> 
                 <input 
                 placeholder="Enter Username" 
                 className="form-control" 
@@ -77,7 +77,7 @@ export default class Profile extends Component {
                 />
             </div>
             <div className="form-group">
-                <label for="email">Email</label> 
+                <label htmlFor="email">Email</label> 
                 <input 
                 placeholder="What's Your Email Address" className="form-control" 
                 type="text" 
@@ -88,7 +88,7 @@ export default class Profile extends Component {
                 />
             </div>
             <div className="form-group">
-                <label for="firstName">First Name</label> 
+                <label htmlFor="firstName">First Name</label> 
                 <input 
                 placeholder="Enter Your First Name" className="form-control" 
                 type="text" 
@@ -99,7 +99,7 @@ export default class Profile extends Component {
                 />
             </div>
             <div className="form-group">
-                <label for="LastName">Last Name</label> 
+                <label htmlFor="LastName">Last Name</label> 
                 <input 
                 placeholder="Enter Your Last Name" className="form-control" 
                 type="text" 

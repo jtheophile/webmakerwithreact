@@ -7,35 +7,36 @@ export default class WebsiteNew extends Component {
       <div>
           <nav className="navbar navbar-dark bg-primary fixed-top row">
             <div className="col-lg-4 d-none d-lg-block">
-              <a href="website-list.html"><i className="fas fa-chevron-left"></i></a>
+              <Link i className="fas fa-chevron-left" to="/user/:uid/website"></Link>
               <span className="navbar-brand mb-0 h1">Websites</span>
-              <a className="float-right pt-2" href="website-new.html"><i className="fas fa-plus"></i></a>
+              <Link className="float-right pt-2" to="./user/:uid/website/new"><i className="fas fa-plus"></i></Link>
             </div>
             <div className="col-lg-8">
               <span className="navbar-brand mb-0 h1">New Website></span>
-              <a className="float-right pt-2" href="website-list.html"><i className="fas fa-check"></i></a>
+              <button>
+              <Link className="float-right pt-2" to="/user/:uid/website"><i className="fas fa-check"></i></Link>
+              </button>
             </div>
           </nav>
-
-          <section className="row">
-            <div className="col-lg-4 d-none d-lg-block">
-              <div className="container">
+            <section className="row">
+              <div className="col-lg-4 d-none d-lg-block">
+               <div className="container">
                 <ul className="list-group">
                   <li className="list-group-item">
-                    <a href="../page/page-list.html">Address Book App</a>
-                    <a className="float-right" href="website-edit.html"><i className="fas fa-cog"></i></a>
+                    <Link to="../page/page-list.html">Address Book App</Link>
+                    <Link className="float-right" to="website-edit.html"><i className="fas fa-cog"></i></Link>
                   </li>
                   <li className="list-group-item">
-                    <a href="../page/page-list.html">Blogger</a>
-                    <a className="float-right" href="website-edit.html"><i className="fas fa-cog"></i></a>
+                    <Link to="/user/:uid/website/:wid/page">Blogger</Link>
+                    <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
                   </li>
                   <li className="list-group-item">
-                    <a href="../page/page-list.html">Blogging App</a>
-                    <a className="float-right" href="website-edit.html"><i className="fas fa-cog"></i></a>
+                    <Link to="/user/:uid/website/:wid/page">Blogging App</Link>
+                    <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
                   </li>
                   <li className="list-group-item">
-                    <a href="../page/page-list.html">Script Testing App</a>
-                    <a className="float-right" href="website-edit.html"><i className="fas fa-cog"></i></a>
+                    <Link to="/user/:uid/website/:wid/page">Script Testing App</Link>
+                    <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
                   </li>
                 </ul>
               </div>
@@ -60,7 +61,7 @@ export default class WebsiteNew extends Component {
             
                 <nav className="navbar navbar-dark bg-primary fixed-bottom">
                 <div className="full-width">
-                  <Link to="/../user/profile.html" className="fas fa-user"></Link>
+                  <Link to="/user/:uid" className="fas fa-user"></Link>
                     </div>
                 </nav>
               </div>

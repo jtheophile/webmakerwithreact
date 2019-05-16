@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { isTSEntityName } from "@babel/types";
 
 // we create the login class (child class of react component class)...gives components default features it should have
 export default class Login extends Component {
@@ -54,7 +52,7 @@ export default class Login extends Component {
                         />
                 </div>    
                 <div className="form-group">
-                    <label for="password"> Password</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         placeholder="Password"
                         type="password"

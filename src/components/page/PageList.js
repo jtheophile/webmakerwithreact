@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {Link} from "react-router-dom";
 
 export default class PageList extends Component {
   render() {
@@ -34,8 +35,9 @@ export default class PageList extends Component {
         </div>
 
 <nav class="navbar navbar-dark bg-primary fixed-bottom">
-    <a class="navbar-brand"></a>
-    <a href="../user/profile.html" class="fas fa-user"></a>
+        <Link to="/user/:uid"> 
+            <i className="fas fa user" /> 
+        </Link>
 </nav>
       </div>
     )

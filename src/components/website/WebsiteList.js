@@ -1,40 +1,64 @@
+import { Link } from "react-router-dom";
 import React, { Component } from 'react'
 
 export default class WebsiteList extends Component {
+
+    state={
+      uid: this.props.match.params.uid,
+      websites:[]
+    }
+
+    async componentDidMount() {
+        await this.filterWebsites(this.props.websites);
+    }
+
+    filterWebsite = (websites) => {
+        const websiteNew = websites.filter(
+          website => (website.developerId === this.state.uid)
+        )
+        this.setState({
+          website: websiteNew
+        })
+      }
+
   render() {
-    return (
-      <div>
-        <div className="container">
-        <nav className="navbar navbar-dark bg-primary fixed-top">
-            <a href="../user/profile.html"><i className="fas fa-chevron-left"></i></a>
+     return (
+         <div>
+            <div className="container">
+              <nav className="navbar navbar-dark bg-primary fixed-top">
+                 <Link to={`/user/${this.state.uid}`}><i className="fas fa-chevron-left"></i></Link>
             <div className="website">
-                <a className="float-left" className="navbar-brand" href="website-list.html">Websites</a>
+                <Link className="float-left navbar-brand" to={"/user/123/website/new"}>Websites</Link>
             </div>
-            <a href="website-new.html" className="fas fa-plus"></a>
-        </nav>   
-        {/* <!-- WEBSITE LIST BODY --> */}
-        <section className="container">
-                <ul className="list-group">
-                    <li className="list-group-item">
-                        <a href="../page/page-list.html">Address Book App</a>
-                        <a className="float-right" href="../website/website-edit.html"><i className="fas fa-cog"></i></a>
+            <Link to={`/user/${this.state.uid}/website/new`} className="fas fa-plus"></Link>
+             </nav>   
+             {/* <!-- WEBSITE LIST BODY --> */}
+          <section className="container">
+                 <ul className="list-group"> {
+                this.state.website.map(
+                        (website) => 
+                          <li key={website._id} className="list-groupitem">
+                    <Link to={`/user/${this.state.uid}/website/${website._id}/page`}>{website.name}</Link>
+                    <Link to={`/user/${this.state.uid}/website/${website._id}`} className="float-right">
+                    </Link>
                     </li>
-
-                    <li className="list-group-item">
-                        <a href="../page/page-list.html">Blogger</a>
-                        <a className="float-right" href="../website/website-edit.html"><i className="fas fa-cog"></i></a>
+                    )
+                  }
+                    <Link to="/user/:uid/website/:wid/page">Address Book App</Link>
+                    <Link className="float-right" to="..//user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
+                  <li className="list-group-item">
+                        <Link to="/user/:uid/website/:wid/page">Blogger</Link>
+                        <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
                     </li>
-
                     <li className="list-group-item">
-                        <a href="../page/page-list.html">Blogging App</a>
-                        <a className="float-right" href="../website/website-edit.html"><i className="fas fa-cog"></i></a>
+                        <Link to="/user/:uid/website/:wid/page">Blogging App</Link>
+                        <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
                     </li>
-
                     <li className="list-group-item">
-                        <a href="../page/page-list.html">Script Testing App</a>
-                        <a className="float-right" href="../website/website-edit.html"><i className="fas fa-cog"></i></a>
+                        <Link href="/user/:uid/website/:wid/page">Script Testing App</Link>
+                        <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
                     </li>
-                </ul>
+    </ul> }
         </section>
       </div>
       </div>

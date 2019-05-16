@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 // this connects the router dom package to display the site  (the package is downloaded from the internet and it has the nodes pre-installed)
 import { BrowserRouter as Router, Route} from "react-router-dom"
-import Login from './components/user/Login';
-import Register from './components/user/Register';
-import Profile from './components/user/Profile';
-import WebsiteList from './components/website/WebsiteList';
-import WebsiteNew from './components/website/WebsiteNew';
-import WebsiteEdit from './components/website/WebsiteEdit';
+import Login from "./components/user/Login";
+import Register from "./components/user/Register";
+import Profile from "./components/user/Profile";
+import WebsiteList from "./components/website/WebsiteList";
+import WebsiteNew from "./components/website/WebsiteNew";
+import WebsiteEdit from "./components/website/WebsiteEdit"
+import PageList from "./components/page/PageList";
 
 
 class App extends Component {
@@ -87,14 +88,14 @@ class App extends Component {
           return (
               <Router>
                 <Route exact path="/" render = { props => (<Login {...props}  users={this.state.users}/>)} />
-                <Route exact path="/login" render= { props => (<Login {...props} users={this.state.users} />)} />
+                <Route exact path="/login" render = { props => (<Login {...props} users={this.state.users} />)} />
                 <Route exact path="/register" render= { props => (<Register {...props} users={this.state.users} addUser={this.addUser} />)} />
-                <Route exact path="/user/:uid" render= { props => (<Profile {...props} users={this.state.users} updateUser={this.updateUser} />)} />
-                <Route exact path="/user/:uid/website" render= { props => (<WebSiteList {...props} websites={this.state.websites} />)} />
-                <Route exact path="/user/:uid/website/new" render= { props => (<WebSiteNew {...props} websites={this.state.websites} />)} />
-                <Route exact path="/user/:uid/website/edit" render= { props => (<WebSiteEdit {...props} websites={this.state.websites} />)} />
+                <Route exact path="/user/:uid" render = { props => (<Profile {...props} users={this.state.users} updateUser={this.updateUser} />)} />
+                <Route exact path="/user/:uid/website" render= { props => (<WebsiteList {...props} websites={this.state.websites} />)} />
+                <Route exact path="/user/:uid/website/new" render = { props => (<WebsiteNew {...props} websites={this.state.websites} WebsiteNew={this.websiteNew} />)} />
+                <Route exact path="/user/:uid/website/edit" render = { props => (<WebsiteEdit {...props} websites={this.state.websites} />)} />
+                <Route exact path="/user/:uid/website/:wid/page" render = {props => (<PageList {...props} page={this.state.pages} />)} />
               </Router>
       )};
-
     }      
       export default App;
