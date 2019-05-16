@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import  { Link } from  "react-router-dom";
+import axios from "axios"
 
 // we create the login class (child class of react component class)...gives components default features it should have
 export default class Login extends Component {
@@ -23,16 +25,16 @@ export default class Login extends Component {
         }
         this.login(user);
     }
-    login = user => {
-        for (let item of this.props.users) {
-            if(item.username === user.username && item.password === user.password) {
+
+    login = async user => {
+        const res = await axios.get(`/api/user?usernames=${user.username}&password=${user.password}`)
+        if(res.data) {
                 // will bring them to their profile page
-                this.props.history.push("/user/" +item._id);
-            return;
-            }
-        }
-        alert("No records don't match our records")
-    }
+                this.props.history.push(`/user/${res.data._id}`);
+                    } else {
+                        alert("Invalid credentials");
+                    }
+                }
 
     render() {
         return (
@@ -63,10 +65,14 @@ export default class Login extends Component {
                         onChange = {this.onChange}
                         />
                 </div>
-                <button className="btn btn-success btn-block" onClick={this.login}>Login</button>
-                <button className="btn btn-primary btn-block">Register</button>
+                <button className="btn btn-success btn-block">
+                Login
+                </button>
+                <Link className="btn btn-primary btn-block" to="/register">
+                    Register
+                </Link>
             </form>
         </div>  
-        )
+        );
     }
 }

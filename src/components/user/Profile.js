@@ -1,36 +1,37 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default class Profile extends Component {
 
+    // (state can account for all data points attributed to it and be called on with this)
     state = {
         username:"",
         email:"",
         password:"",
         firstName:"", 
-        lastName:""
+        lastName:"",
+        oldUsername:""
     }
-
-    componentDidMount (){
-        const uid = this.props.match.params.uid;
-        // looking for user with given uid
-        for (let user of this.props.users) {
-            if(user._id === uid) {
-                this.showUser(user);
-                return;
+    //login
+    async componentDidMount (){
+            const uid = this.props.match.params.uid;
+            const res = await axios.get(`/api/user/${uid}`);
+            if(res.data) {
+                this.showUser(res.data);
+            } else {
+                alert("No user found with these credentials.");
             }
-
-            alert("No user found with these credentials.")
-        }
-    }
-
-        showUser = (user) => {
-            const  {username, email, firstName, lastName, password} = user;
-            this.setState({
-                username, email, firstName, lastName, password
-            });
         }
     
+
+    // display
+    showUser = (user) => {
+        const  {username, email, firstName, lastName, password} = user;
+        this.setState({
+            username, email, firstName, lastName, password, oldUsername: username
+            });
+        }    
 
         onChange = e => {
             this.setState({
@@ -38,9 +39,18 @@ export default class Profile extends Component {
             });
         }
 
-        onSubmit = e => {
+        onSubmit = async e => {
             e.preventDefault();
-            const {username, email, firstName, lastName, password} = this.state;
+            const {username, email, firstName, lastName, password, oldUsername} = this.state;
+                if(username !== oldUsername) {
+                    // check id username is available
+                    const res = await axios.get(`/api/user?username=${username}`);
+                    if(res.data) {
+                        alert("Sorry this username is taken, please try something else.");
+                        return;
+                    }
+                }
+
             const newUser = {
                 _id: this.props.match.params.uid,
                 username,
@@ -48,9 +58,10 @@ export default class Profile extends Component {
                 email,
                 firstName,
                 lastName
-            }
-            this.props.updateUser(newUser)
-
+            }        
+            const res = await axios.put("/api/user", newUser);
+            alert("Updated Successfully.")
+            this.showUser(res.data);
         }
 
     render() {
@@ -110,15 +121,15 @@ export default class Profile extends Component {
                 />
             </div>
             <div>
-                <Link to="/user/:uid/website" className="btn btn-primary btn-block">Websites</Link>
-                <Link to="/Login" className="btn btn-danger btn-block">Logout</Link>
+                <Link className="btn btn-danger btn-block" to={`/user/:uid/website`} >Websites
+                </Link>
+                <Link className="btn btn-danger btn-block" to={`/user/123`}>
+                Logout
+                </Link>
             </div>      
         </form>
     </div>
-    // <nav className="navbar navbar-dark bg-primary fixed-bottom">
-    //         <a className= "navbar-brand"></a>
-    //         {/* <i className= "fas fa-user" style=color:white></i> */}
-    //   </nav>         
+      
        )
     }
 }

@@ -42,4 +42,6 @@ app.get('*', function (req, res) {
 });
 
 // server.listen(port);
-server.listen( port , function() {console.log('Running on ' + app.get('port'));});
+server.listen(port, function() {
+  console.log("Running on " + app.get("port"));
+})
