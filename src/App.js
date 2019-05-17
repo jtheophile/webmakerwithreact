@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // this connects the router dom package to display the site  (the package is downloaded from the internet and it has the nodes pre-installed)
 import { BrowserRouter as Router, Route} from "react-router-dom"
@@ -10,6 +11,11 @@ import WebsiteList from "./components/website/WebsiteList";
 import WebsiteNew from "./components/website/WebsiteNew";
 import WebsiteEdit from "./components/website/WebsiteEdit"
 import PageList from "./components/page/PageList";
+import PageNew from "./components/page/PageNew";
+import PageEdit from "./components/page/PageEdit";
+import WidgetList from "./components/widget/WidgetList";
+import WidgetChooser from "./components/widget/WidgetEdit";
+
 
 
 class App extends Component {
@@ -53,12 +59,12 @@ class App extends Component {
   }
 
   state = {
-    users: [
-          {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "alice@gmail.com"},
-          {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "bob@whatever.com"},
-          {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "charly@ulem.com"},
-          {_id: "456", username: "shiyu", password: "shiyu", firstName: "Shiyu", lastName: "Wang", email: "swang@ulem.org"}           
-        ], 
+    // users: [
+    //       {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", email: "alice@gmail.com"},
+    //       {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley", email: "bob@whatever.com"},
+    //       {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "charly@ulem.com"},
+    //       {_id: "456", username: "shiyu", password: "shiyu", firstName: "Shiyu", lastName: "Wang", email: "swang@ulem.org"}           
+    //     ], 
     website: [        
         { _id: "123", name: "Facebook", developerId: "456", description: "Lorem" },
         { _id: "234", name: "Tweeter",  developerId: "456", description: "Lorem" },
@@ -95,6 +101,8 @@ class App extends Component {
                 <Route exact path="/user/:uid/website/new" render = { props => (<WebsiteNew {...props} websites={this.state.websites} WebsiteNew={this.websiteNew} />)} />
                 <Route exact path="/user/:uid/website/edit" render = { props => (<WebsiteEdit {...props} websites={this.state.websites} />)} />
                 <Route exact path="/user/:uid/website/:wid/page" render = {props => (<PageList {...props} page={this.state.pages} />)} />
+                
+
               </Router>
       )};
     }      

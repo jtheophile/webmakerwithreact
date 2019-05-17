@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import  { Link } from  "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 // we create the login class (child class of react component class)...gives components default features it should have
 export default class Login extends Component {
@@ -27,14 +27,21 @@ export default class Login extends Component {
     }
 
     login = async user => {
-        const res = await axios.get(`/api/user?usernames=${user.username}&password=${user.password}`)
+        const res = axios.get(`/api/user?username=${user.username}&password=${user.password}`)
         if(res.data) {
-                // will bring them to their profile page
-                this.props.history.push(`/user/${res.data._id}`);
-                    } else {
-                        alert("Invalid credentials");
-                    }
-                }
+            this.props.history.push(`/user/${res.data._id}`);
+        } else {
+            alert("invalid credentials, please try again");
+            }
+    }
+        // const res = await axios.get(`/api/user?usernames=${user.username}&password=${user.password}`)
+        // if(res.data) {
+        //         // will bring them to their profile page
+        //         this.props.history.push(`/user/${res.data._id}`);
+        //             } else {
+        //                 alert("Invalid credentials");
+        //             }
+        //         }
 
     render() {
         return (

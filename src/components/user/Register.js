@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
+import uuid from "uuid";
 
 export default class Register extends Component {
 
@@ -92,7 +94,7 @@ export default class Register extends Component {
             </div>
             <div>
                 <button className="btn btn-primary btn-block">Register</button>
-                <button tp="/" className="btn btn-danger btn-block">Cancel</button>
+                <Link to="/login" className="btn btn-danger btn-block">Cancel</Link>
             </div>      
         </form>
     </div>
