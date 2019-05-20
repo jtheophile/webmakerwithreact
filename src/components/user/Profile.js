@@ -16,20 +16,24 @@ export default class Profile extends Component {
     //login
     async componentDidMount (){
             const uid = this.props.match.params.uid;
-            const res = await axios.get(`/api/user/${uid}`);
-            if(res.data) {
-                this.showUser(res.data);
+            const res = await axios.get(`/api/user/${uid}`);         
+            if(res.data){
+                this.showUser(res.date);
             } else {
-                alert("No user found with these credentials.");
+            alert("No user found with these credentials.");
             }
         }
     
-
     // display
     showUser = (user) => {
         const  {username, email, firstName, lastName, password} = user;
         this.setState({
-            username, email, firstName, lastName, password, oldUsername: username
+            username, 
+            email, 
+            firstName, 
+            lastName, 
+            password, 
+            oldUsername: username
             });
         }    
 
@@ -39,31 +43,32 @@ export default class Profile extends Component {
             });
         }
 
-        onSubmit = async e => {
+        onSubmit =  async e => {
             e.preventDefault();
-            const {username, email, firstName, lastName, password, oldUsername} = this.state;
-                if(username !== oldUsername) {
+            const {username, email, firstName, lastName, password, oldUsername} = this.state; {      
+                    }
+                    if(username !== oldUsername)
                     // check id username is available
-                    const res = await axios.get(`/api/user?username=${username}`);
-                    if(res.data) {
+                    const res = await axios.put("/api/user", newUser);
+
+                    if(res.data){
                         alert("Sorry this username is taken, please try something else.");
                         return;
                     }
-                }
-
-            const newUser = {
-                _id: this.props.match.params.uid,
-                username,
-                password,
-                email,
-                firstName,
-                lastName
-            }        
-            const res = await axios.put("/api/user", newUser);
-            alert("Updated Successfully.")
-            this.showUser(res.data);
-        }
-
+                }                   
+                const  newUser = {
+                        _id: this.props.match.params.uid,
+                        username,
+                        password,
+                        email,
+                        firstName,
+                        lastName,
+                        }
+                        const res = await axios.put("/api/user", newUser);
+                        alert("Update Successful.")
+                        this.showUser(res.data);
+                    } 
+            
     render() {
         const {username, email, firstName, lastName} = this.state;
         return (

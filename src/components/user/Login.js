@@ -27,21 +27,14 @@ export default class Login extends Component {
     }
 
     login = async user => {
-        const res = axios.get(`/api/user?username=${user.username}&password=${user.password}`)
+        // show me the info if it matches
+        const res = await axios.get(`/api/user?username=${user.username}&password=${user.password}`)
         if(res.data) {
             this.props.history.push(`/user/${res.data._id}`);
         } else {
             alert("invalid credentials, please try again");
             }
     }
-        // const res = await axios.get(`/api/user?usernames=${user.username}&password=${user.password}`)
-        // if(res.data) {
-        //         // will bring them to their profile page
-        //         this.props.history.push(`/user/${res.data._id}`);
-        //             } else {
-        //                 alert("Invalid credentials");
-        //             }
-        //         }
 
     render() {
         return (

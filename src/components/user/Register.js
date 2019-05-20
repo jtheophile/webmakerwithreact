@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import uuid from "uuid";
+import axios from "axios";
+import uuid from "uuid;"
 
 export default class Register extends Component {
 
@@ -22,34 +23,34 @@ export default class Register extends Component {
       this.register(username, password, password2);
     }
 
-    register (username, password, password2) {
+    async register (username, password, password2) {
         // do the passwords match?
       if(password !== password2) {
-        alert("The passwords do not match.");
+        alert("The passwords do not match, Please try again.");
         return;
       }
 
-      // check if username is available
-      for(let user of this.props.users) {
-        if(user.username === username) {
-          alert("This Username is taken, please try another one.");
-          return;
-        }
-      }
-    // adding a new user into the existing array of users (have to change back to string for the correct format to be read)
-    const newUser = {
-        _id: (parseInt(this.props.users[this.props.users.length -1]._id) + 1 ).tostring(),
-        username,
-        password,
-        email: "",
-        firstName: "",
-        lastName: ""
-    };
-    this.props.addUser(newUser);
-    
-    //navigate to profile
-    this.props.history.push(`/user/${newUser._id}`);
+      //check is username is available
+      const res = await axios.get(`/api/user?username=${username}`);
+
+      if(res.data){
+        alert("This username is taken, please try another one");
+        return;
+      } else {
+         const newUser = {
+          _id: uuid(),
+          username,
+          password,
+          email: "",
+          firstName: "",
+          lastName: ""
+      };   
+      //send to server   
+      const res2 = await axios.post("/api/user", newUser);
+      this.props.histroy.push(`/user/${res2.data._id}`);
   }
+
+ }
       
   render() {
     const {username, password, password2} = this.state

@@ -20,14 +20,6 @@ import WidgetChooser from "./components/widget/WidgetEdit";
 
 class App extends Component {
 
-  addUser = (user) => {
-    const newUsers = this.state.users;
-    newUsers.push(user);
-    this.setState({
-      users: newUsers
-    });
-  }
-
   userNameInUse = (username) => {
     for(let user of this.state.users) {
       if(username === user.userName) {
@@ -93,16 +85,16 @@ class App extends Component {
 
           return (
               <Router>
-                <Route exact path="/" render = { props => (<Login {...props}  users={this.state.users}/>)} />
-                <Route exact path="/login" render = { props => (<Login {...props} users={this.state.users} />)} />
-                <Route exact path="/register" render= { props => (<Register {...props} users={this.state.users} addUser={this.addUser} />)} />
-                <Route exact path="/user/:uid" render = { props => (<Profile {...props} users={this.state.users} updateUser={this.updateUser} />)} />
-                <Route exact path="/user/:uid/website" render= { props => (<WebsiteList {...props} websites={this.state.websites} />)} />
-                <Route exact path="/user/:uid/website/new" render = { props => (<WebsiteNew {...props} websites={this.state.websites} WebsiteNew={this.websiteNew} />)} />
-                <Route exact path="/user/:uid/website/edit" render = { props => (<WebsiteEdit {...props} websites={this.state.websites} />)} />
-                <Route exact path="/user/:uid/website/:wid/page" render = {props => (<PageList {...props} page={this.state.pages} />)} />
-                
-
+                  <Switch>
+                      <Route exact path="/" component={Login} />
+                      <Route exact path="/login" component={Login} />
+                      <Route exact path="/register" component={Register} />
+                      <Route exact path="/user/:uid" component ={Profile} />
+                      <Route exact path="/user/:uid/website" render= { props => (<WebsiteList {...props} websites={this.state.websites} />)} />
+                      <Route exact path="/user/:uid/website/new" render = { props => (<WebsiteNew {...props} websites={this.state.websites} WebsiteNew={this.websiteNew} />)} />
+                      <Route exact path="/user/:uid/website/edit" render = { props => (<WebsiteEdit {...props} websites={this.state.websites} />)} />
+                      <Route exact path="/user/:uid/website/:wid/page" render = {props => (<PageList {...props} page={this.state.pages} />)} />
+                </Switch>
               </Router>
       )};
     }      
