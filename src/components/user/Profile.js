@@ -45,18 +45,16 @@ export default class Profile extends Component {
 
         onSubmit =  async e => {
             e.preventDefault();
-            const {username, email, firstName, lastName, password, oldUsername} = this.state; {      
-                    }
-                    if(username !== oldUsername)
-                    // check id username is available
-                    const res = await axios.put("/api/user", newUser);
-
+            const {username, email, firstName, lastName, password, oldUsername} = this.state;      
+                    if(username !== oldUsername) {
+                    // check if username is available
+                    const res = await axios.get(`/apt/user?username=${username}`);
                     if(res.data){
                         alert("Sorry this username is taken, please try something else.");
                         return;
                     }
                 }                   
-                const  newUser = {
+                const newUser = {
                         _id: this.props.match.params.uid,
                         username,
                         password,
@@ -65,10 +63,10 @@ export default class Profile extends Component {
                         lastName,
                         }
                         const res = await axios.put("/api/user", newUser);
-                        alert("Update Successful.")
+                        alert("Update Successful")
                         this.showUser(res.data);
                     } 
-            
+                
     render() {
         const {username, email, firstName, lastName} = this.state;
         return (
@@ -135,6 +133,6 @@ export default class Profile extends Component {
         </form>
     </div>
       
-       )
+       );
     }
 }
