@@ -1,15 +1,58 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import uuid from "uuid";
+import axios from "axios";
 
 export default class WebsiteNew extends Component {
-  render() {
-    return (
-      <div>
-          <nav className="navbar navbar-dark bg-primary fixed-top row">
-            <div className="col-lg-4 d-none d-lg-block">
-              <Link i className="fas fa-chevron-left" to="/user/:uid/website"></Link>
-              <span className="navbar-brand mb-0 h1">Websites</span>
-              <Link className="float-right pt-2" to="./user/:uid/website/new"><i className="fas fa-plus"></i></Link>
+      state = {
+        uid:this.props.match.params.uid,
+        websites: [],
+        name:"",
+        description:""
+      };
+
+      async componentDidMount() {
+        const res = await axios.get(`/api/user/(${this.state.uid}/website)`);
+        this.filterWebsite(res.data);
+      }
+
+      filterWebsites = websites => {
+        const newWebsites = websites.filter(
+          website => website.developerId === this.state.uid
+        );
+        this.setState({
+          websites: newWebsites
+        });
+      };
+
+      onChange = e => {
+          this.setState({
+            [e.target.name]: e.target.value
+          });
+        };
+
+      onSubmit = async e => {
+          const {name, description, uid } = this.state;
+          e.preventDefault();
+          const newWeb = {
+            _id: uuid(),
+            name,
+            developedId: uid,
+            description
+          };
+          await axios.post("/api/website", newWeb);
+          this.props.history.push(`/user.${this.state.uid}/website`);
+          };
+
+      render() {
+          const { uid } = this.state;
+            return (
+              <div>
+              <nav className="navbar navbar-dark bg-primary fixed-top row">
+              <div className="col-lg-4 d-none d-lg-block">
+                <Link i className="fas fa-chevron-left" to="/user/:uid/website"
+                      ><span className="navbar-brand mb-0 h1">Websites</span></Link>
+                <Link className="float-right pt-2" to="./user/:uid/website/new"><i className="fas fa-plus"></i></Link>
             </div>
             <div className="col-lg-8">
               <span className="navbar-brand mb-0 h1">New Website></span>

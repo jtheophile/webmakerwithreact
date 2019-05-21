@@ -57,15 +57,15 @@ class App extends Component {
     //       {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia", email: "charly@ulem.com"},
     //       {_id: "456", username: "shiyu", password: "shiyu", firstName: "Shiyu", lastName: "Wang", email: "swang@ulem.org"}           
     //     ], 
-    website: [        
-        { _id: "123", name: "Facebook", developerId: "456", description: "Lorem" },
-        { _id: "234", name: "Tweeter",  developerId: "456", description: "Lorem" },
-        { _id: "456", name: "Gizmodo",   developerId: "456", description: "Lorem" },
-        { _id: "890", name: "Go", developerId: "123", description: "Lorem" },
-        { _id: "567", name: "Tic Tac Toe", developerId: "123", description: "Lorem" },
-        { _id: "678", name: "Checkers", developerId: "123", description: "Lorem" },
-        { _id: "789", name: "Chess", developerId: "234", description: "Lorem" }
-        ],
+    // website: [        
+    //     { _id: "123", name: "Facebook", developerId: "456", description: "Lorem" },
+    //     { _id: "234", name: "Tweeter",  developerId: "456", description: "Lorem" },
+    //     { _id: "456", name: "Gizmodo",   developerId: "456", description: "Lorem" },
+    //     { _id: "890", name: "Go", developerId: "123", description: "Lorem" },
+    //     { _id: "567", name: "Tic Tac Toe", developerId: "123", description: "Lorem" },
+    //     { _id: "678", name: "Checkers", developerId: "123", description: "Lorem" },
+    //     { _id: "789", name: "Chess", developerId: "234", description: "Lorem" }
+    //     ],
     pages: [
           { _id: "321", name: "Post 1", websiteId: "456", title: "Lorem" },
           { _id: "432", name: "Post 2", websiteId: "456", title: "Lorem" },
@@ -90,8 +90,8 @@ class App extends Component {
                       <Route exact path="/login" component={Login} />
                       <Route exact path="/register" component={Register} />
                       <Route exact path="/user/:uid" component ={Profile} />
-                      <Route exact path="/user/:uid/website" render= { props => (<WebsiteList {...props} websites={this.state.websites} />)} />
-                      <Route exact path="/user/:uid/website/new" render = { props => (<WebsiteNew {...props} websites={this.state.websites} WebsiteNew={this.websiteNew} />)} />
+                      <Route exact path="/user/:uid/website" component={WebsiteList} />
+                      <Route exact path="/user/:uid/website/new" component={WebsiteNew} />
                       <Route exact path="/user/:uid/website/edit" render = { props => (<WebsiteEdit {...props} websites={this.state.websites} />)} />
                       <Route exact path="/user/:uid/website/:wid/page" render = {props => (<PageList {...props} page={this.state.pages} />)} />
                 </Switch>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from "axios";
 
 export default class WebsiteList extends Component {
 
@@ -9,7 +10,8 @@ export default class WebsiteList extends Component {
     }
 
     async componentDidMount() {
-        await this.filterWebsites(this.props.websites);
+      const res = await axios.get(`/api/user/${state.uid}/website`);
+        this.filterWebsites(res.data);                                  
     }
 
     filterWebsite = (websites) => {
