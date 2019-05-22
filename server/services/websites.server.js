@@ -19,5 +19,11 @@ module.exports = function(app) {
             )
             res.json(result);
           })
-          
+
+          // Create new website function 
+          app.post("/api/website", (req, res) => {
+              const newWeb =req.body;    //new website
+              websites.push(newWeb);     //push new website into array
+              res.json(newWeb);          // send this new website to the client
+          })          
     }

@@ -11,6 +11,7 @@ export default class WebsiteNew extends Component {
         description:""
       };
 
+      // initializes the list
       async componentDidMount() {
         const res = await axios.get(`/api/user/(${this.state.uid}/website)`);
         this.filterWebsite(res.data);
@@ -40,7 +41,8 @@ export default class WebsiteNew extends Component {
             developedId: uid,
             description
           };
-          await axios.post("/api/website", newWeb);
+          // call the new website from serverside 
+          await axios.post("/api/website", newWeb);    // 2nd parameter is where you are sending it to
           this.props.history.push(`/user.${this.state.uid}/website`);
           };
 
@@ -49,65 +51,124 @@ export default class WebsiteNew extends Component {
             return (
               <div>
               <nav className="navbar navbar-dark bg-primary fixed-top row">
-              <div className="col-lg-4 d-none d-lg-block">
-                <Link i className="fas fa-chevron-left" to="/user/:uid/website"
-                      ><span className="navbar-brand mb-0 h1">Websites</span></Link>
-                <Link className="float-right pt-2" to="./user/:uid/website/new"><i className="fas fa-plus"></i></Link>
-            </div>
-            <div className="col-lg-8">
-              <span className="navbar-brand mb-0 h1">New Website></span>
-              <button>
-              <Link className="float-right pt-2" to="/user/:uid/website"><i className="fas fa-check"></i></Link>
-              </button>
-            </div>
-          </nav>
+              <div className="col-lg-4 d-none d-lg-block text-center text white">
+                <Link className="float-left" to={`/user/${uid}/website`} >
+                      <i className="fas fa-chevron-left" />
+                </Link>                
+                <span className=""><strong>Websites</strong></span>
+                <span className="float-right">< i className="fas fa-plus" /></span>
+              </div>
+
+              <div className="col-lg-8 text-center text-white">
+                 <Link className="d-lg-none float-left" to={`/user/${uid}/website`} >
+                    <i className="fas fa-chevron-left" />
+                 </Link>
+                          
+              <span><strong>New Website</strong></span>
+                  <button className="float-right btn" form="newWebForm">
+                      <i className="fas fa-check" />
+                  </button>
+              </div>
+              </nav>
+
+
             <section className="row">
               <div className="col-lg-4 d-none d-lg-block">
-               <div className="container">
+               <div className="container-fluid">
                 <ul className="list-group">
-                  <li className="list-group-item">
-                    <Link to="../page/page-list.html">Address Book App</Link>
-                    <Link className="float-right" to="website-edit.html"><i className="fas fa-cog"></i></Link>
-                  </li>
-                  <li className="list-group-item">
-                    <Link to="/user/:uid/website/:wid/page">Blogger</Link>
-                    <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                  </li>
-                  <li className="list-group-item">
-                    <Link to="/user/:uid/website/:wid/page">Blogging App</Link>
-                    <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                  </li>
-                  <li className="list-group-item">
-                    <Link to="/user/:uid/website/:wid/page">Script Testing App</Link>
-                    <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                  </li>
+                  {this.state.websites.map(website => (
+                    <li 
+                      key={website._id}
+                      className="list-group-item">
+
+                     <Link to={`/user/${uid}/website/${website._id}/page`}>
+                          {website.name}
+                     </Link>
+                     <Link to={`/user/${uid}/website/${website._id}`} className="float-right">
+                          <i className="fas fa-cog" />
+                     </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
-              </div>
+            </div>
+
               <div className="col-lg-8">
-                <div className="container">
-                  <form>
+                <div className="container-fluid">
+                  <form id="newWebForm" onSubmit={this.onSubmit}>
                     <div className="form-group">
-                      <label for="name">Name</label>
-                      <input placeholder="Enter Website name here" className="form-control" type="text" id="name" name="Name" />
+                      <label htmlFor="name">
+                        <b>Name</b>
+                      </label>                      
+                      <input placeholder="Enter Website name here" 
+                      className="form-control" 
+                      type="text" 
+                      id="name" 
+                      name="Name"
+                      onChange={this.onChange}
+                      value="{this.state.name"
+                      />
                     </div>
                     <div className="form-group">
-                      <label for="description">Description</label>
-                      <textarea rows="5" placeholder="Tell us about your website..."
-                        className="form-control" id="description"
-                        name="description"></textarea>
+                      <label htmlFor="description">
+                        <b>Description</b>
+                      </label>
+                      <textarea 
+                          rows="5" 
+                          placeholder="Tell us about your website..."
+                          className="form-control" 
+                          id="description"
+                          name="description"
+                          onChange={this.onChange}
+                          value={this.state.description}
+                          />                          
                     </div>
+
+                    <Link to={`/user/${uid}/website`} className="btn btn-lg btn-warning">
+                      Cancel
+                    </Link>
+                    <button className="btn btn-lg btn-sucess float-right">
+                      Submit
+                    </button>
                   </form>
                 </div>
               </div>
             </section>
-            
-                <nav className="navbar navbar-dark bg-primary fixed-bottom">
+
+            <nav className="navbar navbar-dark bg-primary fixed-bottom">
                 <div className="full-width">
-                  <Link to="/user/:uid" className="fas fa-user"></Link>
+                  <Link className="color-white float right" to={`/user/${uid}`} >
+                  <i className="fas fa-user" />
+                  </Link>
                     </div>
                 </nav>
               </div>
                 )
               }
             }
+
+
+
+
+
+            
+
+
+
+        //     <Link className="float-right" to="website-edit.html"><i className="fas fa-cog"></i></Link>
+        //     </li>
+        //     <li className="list-group-item">
+        //       <Link to="/user/:uid/website/:wid/page">Blogger</Link>
+        //       <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
+        //     </li>
+        //     <li className="list-group-item">
+        //       <Link to="/user/:uid/website/:wid/page">Blogging App</Link>
+        //       <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
+        //     </li>
+        //     <li className="list-group-item">
+        //       <Link to="/user/:uid/website/:wid/page">Script Testing App</Link>
+        //       <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
+        //     </li>
+        //   </ul>
+        // </div>
+        // </div>

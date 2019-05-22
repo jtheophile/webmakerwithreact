@@ -92,10 +92,18 @@ class App extends Component {
                       <Route exact path="/user/:uid" component ={Profile} />
                       <Route exact path="/user/:uid/website" component={WebsiteList} />
                       <Route exact path="/user/:uid/website/new" component={WebsiteNew} />
-                      <Route exact path="/user/:uid/website/edit" render = { props => (<WebsiteEdit {...props} websites={this.state.websites} />)} />
-                      <Route exact path="/user/:uid/website/:wid/page" render = {props => (<PageList {...props} page={this.state.pages} />)} />
-                </Switch>
+                      <Route exact path="/user/:uid/website/:wid" component={WebsiteEdit} />
+                      <Route exact path="/user/:uid/website/:wid/page" component={PageList} />
+                      <Route exact path="/user/:uid/website/:wid/page/new" component={PageNew} />
+                      <Route exact path="/user/:uid/website/:wid/page/:pid" component={PageEdit} />
+                      <Route exact path="/user/:uid/website/:wid/page/:pid/widget" component={WidgetList} />
+                      <Route exact path="/user/:uid/website/:wid/page/:pid/widget/new" component={WidgetChooser} />
+                      <Route exact pather="/user/:uid/website/:wid/page/:pid/widget/:wgid" componenet={WidgetEdit} />
+                  </Switch>
               </Router>
       )};
     }      
       export default App;
+
+
+

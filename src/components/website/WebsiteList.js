@@ -11,7 +11,7 @@ export default class WebsiteList extends Component {
 
     async componentDidMount() {
       const res = await axios.get(`/api/user/${state.uid}/website`);
-        this.filterWebsites(res.data);                                  
+        this.filterWebsites(res.data);                                   
     }
 
     filterWebsite = (websites) => {
