@@ -48,13 +48,14 @@ export default class WebsiteEdit extends Component {
         };
 
         delete = async () => {
-            await axios.delete(`/api/website/${this.state.wid}`;
+            // website delete - server function to delete sites await axios.delete(`/api/website/${this.state.wid}`);
+            await axios.delete.name(`/api/website/${this.props.mathch.params .wid}`);
             this.props.history.push(`/user/${this.state.uid}/website`);
         };
 
         onSubmit = async e => {
             e.preventDefault();
-            const newWeb = {
+            const newWeb = {                ///new website
                 _id: this.state.wid,
                 name: this.state.name,
                 description: this.state.description,
@@ -74,7 +75,7 @@ export default class WebsiteEdit extends Component {
                         <i className="fas fa-chevron-lef float-left" />
                     </Link>
 
-                    <span className="navbar-brand mb-0 h1">Websites</span>
+                    <span>Websites</span>
 
                     <Link to={`/user/${uid}/website/new`}>
                         <i className="fas fa-plus" className="float-right"/>
@@ -82,7 +83,7 @@ export default class WebsiteEdit extends Component {
                 </div>
                 
                 <div className="col-lg-8 text-center text-white">
-                    <Link className="d-lg-none float-left" to="/user/:uid/website">
+                    <Link className="d-lg-none float-left" to={`/user/${uid}/website`} >
                         <i className="fas a chevron-left" /> 
                     </Link>
                     <span>Edit Website</span>
@@ -138,7 +139,7 @@ export default class WebsiteEdit extends Component {
                                 <textarea 
                                 rows="5" 
                                 placeholder="What is your site about?" 
-                                className="form-control" 
+                                className="form-control"
                                 type="text" 
                                 id="description"
                                 name="description"
@@ -167,12 +168,10 @@ export default class WebsiteEdit extends Component {
                     <i className="fas fa-user" />
                 </Link>
                 </div>
-            </nav>
-        );
+            </nav>        
+            );
     }
 }
-
-
 
         {/* <li className="list-group-item">
                                 <Link to="/user/:uid/website/:wid/page">Address Book App</Link>

@@ -1,5 +1,6 @@
 module.exports = function(app) {
-    const websites = [
+    // use let (not const) becuase you are updating it and const is already being used
+    let websites = [
             { _id: "123", name: "Facebook", developerId: "456", description: "Lorem" },
             { _id: "234", name: "Tweeter",  developerId: "456", description: "Lorem" },
             { _id: "456", name: "Gizmodo",   developerId: "456", description: "Lorem" },
@@ -26,4 +27,26 @@ module.exports = function(app) {
               websites.push(newWeb);     //push new website into array
               res.json(newWeb);          // send this new website to the client
           })          
+
+          // delete website with given wid
+          app.delete("/api/website/:wid", (req, res) => {
+              const wid = req.params["wid"];
+              const web = websites.find((website) => (website._id === wid));   // looking for wid, then to slice it out
+              websites.splice(websites.indexOf(web), l); //use the index to find the right site, only splicing 1
+              res.json(web)  //update user of deletion
+              })
+
+              //update website
+              app.put("/api/website", (req, res) => {
+                    const newWeb = req.body;
+                        websites = websites.map(     //easier looping function than for
+                        (website) => {
+                            if(website._id === newWeb_.id) {
+                                website = newWeb
+                            }
+                            return website;                            
+                        }
+                    )
+                    res.json(newWeb);                
+              })                   
     }

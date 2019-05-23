@@ -1,45 +1,94 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import axios from "axios"
 
 export default class PageList extends Component {
+
+    state = {
+        uid: "",
+        wid: "",
+        pages: []
+    }
+
+    async componentDidMount() {
+            await this.setState({
+                uid: this.props.match.params.uid,
+                wid: this.props.match.params.wid
+            })
+            this.filterPage(this.state.wid);  //filter the pages that match these attributes
+            }
+    }
+
+    filterPage = async (wid) => {
+        const res = await axios.get(`{api/website/${this.state.wid}/page}`)
+        this.setState({
+            pages: res.data
+        })
+    }
+
   render() {
+      const {uid, wid} = this.state;
     return (
       <div>
-        <div class="container">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">Blog Post</a>
-                    <a class="float-right" href="../page/page-new.html"><i class="fas fa-cog"></i></a>
-                </li>
+          <nav className="navbar navbar-light fixed-top bg-light">
+                <Link className="color-black" to={`/user/${uid}/website`}>
+                    <i className="fas fa-chevron-left" />
+                </Link>
+                <span className="navbar-brand">
+                    Pages
+                </span>
+                <Link className="color-black" to={`/user/${uid}/website/${wid}/pages/new`}>
+                    <i className="fas fa-plus" />                
+                </Link>
+          </nav>
 
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">Blogs</a>
-                    <a class="float-right" href="website-edit.html"><i class="fas fa-cog"></i></a>
-                </li>
-
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">Home</a>
-                    <a class="float-right" href="website-edit.html"><i class="fas fa-cog"></i></a>
-                </li>
-
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">About</a>
-                    <a class="float-right" href="website-edit.html"><i class="fas fa-cog"></i></a>
-                </li>
-
-                <li class="list-group-item">
-                    <a href="../page/page-list.html">Contact Us</a>
-                    <a class="float-right" href="website-edit.html"><i class="fas fa-cog"></i></a>
-                </li>
+        <div className="container">
+            <ul className="list-group">
+                {
+                    this.state.pages.map(
+                        (page) => (
+                            <li key={page.id} className="list-group-item">
+                                <Link to={`/user/${uid}/website/${wid}/page/${page._id}/widget`}>{page.name}</Link>
+                                <Link className="float-right" to={`/user/${uid}/website/${wid}/page/{${page._id}`} >
+                                    <i className="fas fa-cog" />
+                                </Link>
+                            </li>
+                        )
+                    )
+                }
             </ul>
         </div>
 
-<nav class="navbar navbar-dark bg-primary fixed-bottom">
-        <Link to="/user/:uid"> 
-            <i className="fas fa user" /> 
-        </Link>
-</nav>
+        <footer className="navbar navbar-light fixed bottom bg-light">
+             <div className="full-width">
+                <Link className="color-black float-right" to={`/user/${uid}`}> 
+                     <i className="fas fa-user" /> 
+                </Link>
+            </div>
+        </footer>
       </div>
-    )
+    );
   }
 }
+
+
+
+                            {/* <li class="list-group-item">
+                                <Link to="../page/page-list.html">Blogs</Link>
+                                <a class="float-right" to="website-edit.html"><i class="fas fa-cog"></i></Link>
+                            </li>
+
+                            <li class="list-group-item">
+                                <Link to="../page/page-list.html">Home</Link>
+                                <a class="float-right" hto="website-edit.html"><i class="fas fa-cog"></i></Link>
+                            </li>
+
+                            <li class="list-group-item">
+                                <Link to="../page/page-list.html">About</Link>
+                                <a class="float-right" to="website-edit.html"><i class="fas fa-cog"></i></Link>
+                            </li>
+
+                            <li class="list-group-item">
+                                <Link to="../page/page-list.html">Contact Us</Link>
+                                <Link className="float-right"  to="website-edit.html"><i class="fas fa-cog"></i></Link>
+                            </li> */}
