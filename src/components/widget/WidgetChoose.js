@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
+import { Link } from "react-router-dom";
+import uuid from "uuid";
+import Axios from "axios";
 
 export default class WidgetChoose extends Component {
+
+    
   render() {
     return (
         <div>

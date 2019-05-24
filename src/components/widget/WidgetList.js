@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-fom";
+import axios from "axios";
 
 export default class WidgetList extends Component {
 
@@ -19,15 +20,10 @@ export default class WidgetList extends Component {
             this.filterWidgets(this.state.pid);
         }
 
-        filterWidgets = (pid) => {
-            const widget = this.props.widget.filter(
-                (widget) => (
-                    widget.pafeId === pid
-                )
-            )
-
+        filterWidgets = async (pid) => {
+            const res = await axios.get(`/api/page/${pid}/widget`)
             this.setState({
-                widgets
+                widgets: res.data                       //you don't want to return the array but the data from the array
             })
         }            
 
@@ -36,10 +32,11 @@ export default class WidgetList extends Component {
       const {uid, pid, wid, widgets} = this.state      
         return (
             <div>
-                <nav className="navabr navbar-light fixed-top bg-light">
+                <nav className="navabar navbar-light fixed-top bg-light">
                 <Link 
                     to={`/user/${uid}/website/${wid}/page`}>
-                    <i className="fa fa-chevron-left"  className="color-black"></i>
+                    <i className="fa fa-chevron-left" 
+                    className="color-black" />
                 </Link>
                 <span className="navbar-brand">
                     Widgets
