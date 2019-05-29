@@ -1,56 +1,84 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import uuid from "uuid";
 import Axios from "axios";
 
 export default class WidgetChoose extends Component {
 
+        createwidget = type => {
+            const {uid, wid, pid} = this.props.match.params
+            const newWidget = {
+                _id: uuid(),
+                name:"",
+                widgetType: type,
+                pageId: pid,
+                text: "",
+                size: 1,
+                width: "",
+                url: ""
+            }
+            Axios.post("/api/widget", newWidget);
+            this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget/${newWidget._id}`)
+        }
     
   render() {
-    return (
-        <div>
-      <div>
-        <nav className="navbar navbar-light bg-light fixed-top">
-        <a href="widget-list.html"><i className="fas fa-chevron-left"></i></a>
-        <span className="navbar-brand mb-0 h1">Chooser Widget</span>
-        <span></span>
-      </div>
-    </nav>
-    <div className="container">
-        <ul className="list-group list-group-flush">
-            <li className="list-group-item">
-                <a href="widget-heading.html">Header</a>
-            </li>
-            <li className="list-group-item">
-                <a href="#">Label</a>
-            </li>
-            <li className="list-group-item">
-                <a href="#">HTML</a>
-            </li>
-            <li className="list-group-item">
-                    <a href="#">Text Input</a>
-            </li>
-            <li className="list-group-item">
-                <a href="#">Link</a>
-            </li>
-            <li className="list-group-item">
-                <a href="#">Text Input</a>
-            </li>
-            <li className="list-group-item">
-                <a href="widget-image.html">Image</a>
-            </li>
-            <li className="list-group-item">
-                <a href="widget-youtube.html">Youtube</a>
+      const {uid, wid, pid} = this.props.match.params
+      return (
+            <div>
+                <nav className="navbar navbar-light bg-light fixed-top">
+                    <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
+                        <i className="fas fa-chevron-left" />
+                        <span className="navbar-brand padding-left">Chooser Widget</span>
+                        <span></span>
+                    </Link>
+                </nav>
 
-            <li className="list-group-item">
-                <a href="#">Data Table</a>
-            </li>
-            <li className="list-group-item">
-                <a href="#">Repeater</a>
-            </li>
-        </ul>
-    </div>
-    </div>
-    )
-  }
+                <div className="container">
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item">
+                            <span onClick={this.createwidget.bind(this, "HEADING")}>
+                                Heading
+                            </span>
+                        </li>
+
+                        <li className="list-group-item">
+                            <Link to="#">Label</Link>
+                        </li>
+
+                        <li className="list-group-item">
+                            <Link to="#">Text Input</Link>
+                        </li>
+
+                        <li className="list-group-item">
+                            <Link to="#">Link</Link>
+                        </li>
+
+                        <li className="list-group-item">
+                            <Link to="#">Button</Link>
+                        </li>
+
+                        <li className="list-group-item">
+                            <span onClick={this.createwidget.bind(this,"IMAGE")}>
+                                Image                                
+                            </span>
+                        </li>
+                        
+                        <li className="list-group-item">
+                            <span onClick={this.createwidget.bind(this,"YOUTUBE")}>
+                                Youtube
+                            </span>
+                        </li>
+
+                        <li className="list-group-item">
+                            <Link to="#">Data Table</Link>
+                        </li>
+
+                        <li className="list-group-item">
+                            <Link to="#">Repeater</Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>    
+        );
+    }
 }

@@ -7,7 +7,7 @@ module.exports = function(app) {
               { _id: "678", widgetType: "YOUTUBE", pageId: "321", width: "100%", url: "https://youtu.be/AM2Ivdi9c4E" },
             ];
 
-    //find widgets by the 
+    //find widgets by the id
     app.get("/api/page/:pid/widget", (req, res) => {
         const pid = req.params["pid"]
         const result = widgets.filter(            
@@ -49,6 +49,13 @@ module.exports = function(app) {
     })
 
     //delete widget by give id
-
-
+    app.delete("/api/widget/:wgid", (req, res) => {
+        const wgid = req.params["wgid"];
+        const widget = widgets.find(
+            (widget) => (widget._id === wigid)
+        );
+        const index = widgets.indexOf(widget);
+        widgets.splice(index, 1);
+        res.json(widget);
+    })
 }
