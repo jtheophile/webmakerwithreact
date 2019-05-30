@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export default class WidgetHeading extends Componenet {
+export default class WidgetHeading extends Component {
 
         onChange = e => {
             this.props.onChange(e);
@@ -85,7 +85,7 @@ export default class WidgetHeading extends Componenet {
                         </form>
                     </div>
 
-                    <Footer className="navbar navbar-light fixed-bottom bg-light">
+                    <footer className="navbar navbar-light fixed-bottom bg-light">
                         <div clasSName="full-width">
                             <Link 
                                 className="color-black float-right"
@@ -93,7 +93,7 @@ export default class WidgetHeading extends Componenet {
                                 <i className="fas fa-user"/>
                             </Link>
                         </div>
-                    </Footer>
+                    </footer>
                 </div>
             );
         }

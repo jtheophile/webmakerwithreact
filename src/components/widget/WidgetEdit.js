@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import WidgetHeading from './WidgetHeading';
 import WidgetImage from './WidgetImage';
 import WidgetYoutube from './WidgetYoutube';
-import Axios from "Axios";
+import Axios from "axios";
 
 export default class WidgetEdit extends Component {
 
@@ -66,12 +66,12 @@ const {newWidget} = {
 
 onDelete = () => {
     const {uid, wid, pid} = this.state;
-    Axios.delete(`/api/widget.${this.props.match.wgid}`)
+    Axios.delete(`/api/widget/${this.props.match.wgid}`)
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
 }
                          
 render() {
-const {text, size, width, widgetType, url, uid, wid, name} = this.state;
+const {text, size, width, widgetType, url, uid, wid, pid, name} = this.state;
 if (widgetType === "HEADING") {
     return (
         <WidgetHeading
@@ -87,8 +87,8 @@ if (widgetType === "HEADING") {
         />
     );
 
-    } else if(widgetType ==="IMAGE"){
-        return
+    } else if(widgetType ==="IMAGE") {
+        return (
             <WidgetImage
                 name={name}
                 width={width}
@@ -100,7 +100,7 @@ if (widgetType === "HEADING") {
                 onSubmit={this.onSubmit}
                 onDelete={this.onDelete}
             />
-        );
+        );        
 
     } else {       
         return(

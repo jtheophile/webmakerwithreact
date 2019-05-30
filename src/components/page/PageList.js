@@ -16,7 +16,7 @@ export default class PageList extends Component {
                 wid: this.props.match.params.wid
             })
             this.filterPage(this.state.wid);  //filter the pages that match these attributes
-            }
+            
     }
 
     filterPage = async (wid) => {
@@ -71,24 +71,3 @@ export default class PageList extends Component {
   }
 }
 
-
-
-                            {/* <li class="list-group-item">
-                                <Link to="../page/page-list.html">Blogs</Link>
-                                <a class="float-right" to="website-edit.html"><i class="fas fa-cog"></i></Link>
-                            </li>
-
-                            <li class="list-group-item">
-                                <Link to="../page/page-list.html">Home</Link>
-                                <a class="float-right" hto="website-edit.html"><i class="fas fa-cog"></i></Link>
-                            </li>
-
-                            <li class="list-group-item">
-                                <Link to="../page/page-list.html">About</Link>
-                                <a class="float-right" to="website-edit.html"><i class="fas fa-cog"></i></Link>
-                            </li>
-
-                            <li class="list-group-item">
-                                <Link to="../page/page-list.html">Contact Us</Link>
-                                <Link className="float-right"  to="website-edit.html"><i class="fas fa-cog"></i></Link>
-                            </li> */}

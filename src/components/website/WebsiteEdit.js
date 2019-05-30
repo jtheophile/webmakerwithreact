@@ -19,9 +19,23 @@ export default class WebsiteEdit extends Component {
         }
 
         filterWebsites = websites => {
-            const newWebites = websites.filter(
-                website.developerId === this.state.uid
+            const newWebsites = websites.filter(
+                (website)=> (website.developerId === this.state.uid)
             );
+
+            // const newWebites = websites.filter(
+            //     function(website){
+            //         return website.developerId === this.state.uid
+            //     }
+            // )
+
+            // const result = []
+            // for(website of websites){
+            //     if(website.developerId === this.state.uid) {
+            //         result.push(website);
+            //     }
+            // }
+
             this.setState({
                 websites: newWebsites
             });
@@ -39,7 +53,7 @@ export default class WebsiteEdit extends Component {
                 name: currentWeb.name,
                 description: currentWeb.description
             });
-        });
+        };
 
         onChange = e => {
             this.setState({
@@ -49,7 +63,7 @@ export default class WebsiteEdit extends Component {
 
         delete = async () => {
             // website delete - server function to delete sites await axios.delete(`/api/website/${this.state.wid}`);
-            await axios.delete.name(`/api/website/${this.props.mathch.params .wid}`);
+            await axios.delete.name(`/api/website/${this.props.mathch.params.wid}`);
             this.props.history.push(`/user/${this.state.uid}/website`);
         };
 
@@ -78,7 +92,7 @@ export default class WebsiteEdit extends Component {
                     <span>Websites</span>
 
                     <Link to={`/user/${uid}/website/new`}>
-                        <i className="fas fa-plus" className="float-right"/>
+                        <i className="fas fa-plus float-right" />
                     </Link>
                 </div>
                 
@@ -105,7 +119,7 @@ export default class WebsiteEdit extends Component {
                                             {website.name}
                                         </Link>
                                         <Link to={`/user/${uid}/website/${website._id}`} >
-                                            <i className="fas fa-cog" className="float-right" />
+                                            <i className="fas fa-cog float-right"/>
                                         </Link>
                                     </li>
                                 ))}
@@ -142,7 +156,6 @@ export default class WebsiteEdit extends Component {
                                 className="form-control"
                                 type="text" 
                                 id="description"
-                                name="description"
                                 name="name of website"
                                 value={this.state.description}
                                 onChange={this.onChange}
@@ -154,12 +167,12 @@ export default class WebsiteEdit extends Component {
                             <button 
                                 type="button"
                                 onClick={this.delete}
-                                className="btn btn-lg btn warning" className="float-right">
+                                className="btn btn-lg btn warning float-right"/>
                                     Delete
                             </button>
                         </form>
                     </div>
-                </div>    
+                  
             </div>
 
             <nav className="navbar navbar-dark bg-primary fixed-bottom">
@@ -168,30 +181,9 @@ export default class WebsiteEdit extends Component {
                     <i className="fas fa-user" />
                 </Link>
                 </div>
-            </nav>        
+            </nav> 
+            
+        </div>
             );
     }
 }
-
-        {/* <li className="list-group-item">
-                                <Link to="/user/:uid/website/:wid/page">Address Book App</Link>
-                                <Link className="float-right" href="website-edit.html"><i className="fas fa-cog"></i></Link>
-                            </li>
-
-                            <li className="list-group-item">
-                                <Link to="/user/:uid/website/:wid/page">Blogger</Link>
-                                <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                            </li>
-
-                            <li className="list-group-item">
-                                <Link to="../page/page-list.html">Blogging App</Link>
-                                <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                            </li>
-
-                            <li className="list-group-item">
-                                <Link to="/user/:uid/website/:wid/page">Script Testing App</Link>
-                                <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div> */}

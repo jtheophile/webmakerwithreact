@@ -35,8 +35,7 @@ export default class WidgetList extends Component {
                 <nav className="navabar navbar-light fixed-top bg-light">
                 <Link 
                     to={`/user/${uid}/website/${wid}/page`}>
-                    <i className="fas fa-chevron-left"
-                    className="color-black" />
+                    <i className="fas fa-chevron-left color-black" />
                 </Link>
                 <span className="navbar-brand">
                     Widgets

@@ -4,13 +4,13 @@ import axios from "axios";
 
 export default class WebsiteList extends Component {
 
-    state={
+    state= {
       uid: this.props.match.params.uid,
       websites:[]
     }
 
     async componentDidMount() {
-      const res = await axios.get(`/api/user/${state.uid}/website`);
+      const res = await axios.get(`/api/user/${this.state.uid}/website`);
         this.filterWebsites(res.data);                                   
     }
 

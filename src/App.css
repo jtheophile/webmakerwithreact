@@ -3,35 +3,32 @@ body{
     padding-bottom: 100px;
 }
 
-nav a, nav button i, span {
+a {
+    text-decoration: none !important;
+}
+
+nav a, nav button i  {
     color: white;
     }
 
-.navbar-brand, .form-group, {
-    /* font-weight: 500; */
-}
-.website {
-    width: 90%;
+.navbar-light a, .navbar-light span, .navbar-light button i {
+    color: black;
+} 
+
+label {
+    font-weight: 700;
 }
 
-.float-left {
-    font-weight: bold;
+.width-90 {
+    width: 90%
 }
 
-ul {
-    list-style-type: none;
-    text-decoration: none;
+.absolute-right {
+    position: absolute;
+    right: 15px;
+    z-index: 2;
 }
 
-li {
-    text-decoration: none;
-}
-
-.delete {
-    padding-top: 10px;
-}
-
-a, a:hover {
-    text-decoration:none;
-    
+span {
+    cursor: pointer;
 }
