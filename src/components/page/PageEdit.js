@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import uuid from "uuid";
 import axios from "axios"
 
 export default class PageEdit extends Component {

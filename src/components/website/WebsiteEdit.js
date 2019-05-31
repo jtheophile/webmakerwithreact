@@ -167,7 +167,7 @@ export default class WebsiteEdit extends Component {
                             <button 
                                 type="button"
                                 onClick={this.delete}
-                                className="btn btn-lg btn warning float-right"/>
+                                className="btn btn-lg btn warning float-right">
                                     Delete
                             </button>
                         </form>
@@ -177,7 +177,9 @@ export default class WebsiteEdit extends Component {
 
             <nav className="navbar navbar-dark bg-primary fixed-bottom">
                 <div className="full-width">
-                <Link className="color-white float-right" to={`/user/${uid}`} >
+                <Link 
+                    className="color-white float-right"
+                    to={`/user/${uid}`} >
                     <i className="fas fa-user" />
                 </Link>
                 </div>

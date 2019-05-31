@@ -125,10 +125,11 @@ export default class WidgetList extends Component {
 
                 <footer className="navabar navbar-light fixed bottom bg-light">
                     <div className="full-width">
-                        <Link 
-                            to={`/user.${uid}`}
+                        <Link
                             className="color-black float-right"
-                            i className="fas fa-user" />                    
+                            to={`/user.${uid}`}>
+                            <i className="fas fa-user" />  
+                        </Link>                
                     </div>
                 </footer>
             </div>

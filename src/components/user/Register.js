@@ -41,6 +41,7 @@ export default class Register extends Component {
           _id: uuid(),
           username,
           password,
+          password2,
           email: "",
           firstName: "",
           lastName: ""
@@ -57,7 +58,7 @@ export default class Register extends Component {
     return (
       <div>
         <div className="container">
-        <h1>Register</h1>
+        <h1>Register</h1> 
         <form onSubmit={this.onSubmit}>
             <div className="form-group">
                 <input 
@@ -88,7 +89,7 @@ export default class Register extends Component {
                     className="form-control"
                     type="password"
                     id="Password"
-                    name="password"
+                    name="password2"
                     onChange={this.onChange} 
                     value={password2}
                     />
@@ -99,7 +100,7 @@ export default class Register extends Component {
             </div>      
         </form>
     </div>
-      </div>
+    </div>
     )
   }
 }
