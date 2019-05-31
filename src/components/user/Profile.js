@@ -18,7 +18,7 @@ export default class Profile extends Component {
             const uid = this.props.match.params.uid;
             const res = await axios.get(`/api/user/${uid}`);         
             if(res.data){
-                this.showUser(res.date);
+                this.showUser(res.data);
             } else {
             alert("No user found with these credentials.");
             }
@@ -74,7 +74,7 @@ export default class Profile extends Component {
             <nav className="navbar navbar-dark bg-primary fixed-top">
             <span className="navbar-brand mb-0 h1">Profile</span>
                 <button className="btn" form="profileform" href="profile.html">
-                    <i className="fas fa-check"></i><span>Save Update</span>
+                    <i className="fas fa-check"></i>
                 </button>
         </nav> 
         <form id="profileForm" onSubmit={this.onSubmit}>
@@ -83,7 +83,8 @@ export default class Profile extends Component {
                 <input 
                 placeholder="Enter Username" 
                 className="form-control" 
-                type="text" id="username" 
+                type="text" 
+                id="username" 
                 name="username"
                 // use the brackets, nonstring varibles
                 value={username}
@@ -93,7 +94,8 @@ export default class Profile extends Component {
             <div className="form-group">
                 <label htmlFor="email">Email</label> 
                 <input 
-                placeholder="What's Your Email Address" className="form-control" 
+                placeholder="What's Your Email Address" 
+                className="form-control" 
                 type="text" 
                 id="email" 
                 name="email" 
@@ -104,7 +106,8 @@ export default class Profile extends Component {
             <div className="form-group">
                 <label htmlFor="firstName">First Name</label> 
                 <input 
-                placeholder="Enter Your First Name" className="form-control" 
+                placeholder="Enter Your First Name" 
+                className="form-control" 
                 type="text" 
                 id="firstName" 
                 name="FirstName" 
@@ -115,7 +118,8 @@ export default class Profile extends Component {
             <div className="form-group">
                 <label htmlFor="LastName">Last Name</label> 
                 <input 
-                placeholder="Enter Your Last Name" className="form-control" 
+                placeholder="Enter Your Last Name" 
+                className="form-control" 
                 type="text" 
                 id="Lastname" 
                 name="lastname" 
@@ -123,13 +127,19 @@ export default class Profile extends Component {
                 onChange={this.onChange}
                 />
             </div>
-            <div>
-                <Link className="btn btn-danger btn-block" to={`/user/:uid/website`} >Websites
+
+            
+                <Link 
+                    className="btn btn-danger btn-block" 
+                    to={`/user/:uid/website`} >
+                        Websites
                 </Link>
-                <Link className="btn btn-danger btn-block" to={`/user/123`}>
+                <Link 
+                    className="btn btn-danger btn-block" 
+                    to={`/user/123`}>
                 Logout
                 </Link>
-            </div>      
+                  
         </form>
     </div>
       
