@@ -24,46 +24,46 @@ export default class WebsiteList extends Component {
       }
 
   render() {
+    const {uid} = this.state
      return (
          <div>
-            <div className="container">
-              <nav className="navbar navbar-dark bg-primary fixed-top">
-                 <Link to={`/user/${this.state.uid}`}><i className="fas fa-chevron-left"></i></Link>
-            <div className="website">
-                <Link className="float-left navbar-brand" to={"/user/123/website/new"}>Websites</Link>
-            </div>
-            <Link to={`/user/${this.state.uid}/website/new`} className="fas fa-plus"></Link>
-             </nav>   
-             {/* <!-- WEBSITE LIST BODY --> */}
-          <section className="container">
-                 <ul className="list-group"> {
-                this.state.website.map(
-                        (website) => 
-                          <li key={website._id} className="list-groupitem">
-                    <Link to={`/user/${this.state.uid}/website/${website._id}/page`}>{website.name}</Link>
-                    <Link to={`/user/${this.state.uid}/website/${website._id}`} className="float-right">
-                    </Link>
-                    </li>
-                    )
-                  }
-                    <Link to="/user/:uid/website/:wid/page">Address Book App</Link>
-                    <Link className="float-right" to="..//user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                  <li className="list-group-item">
-                        <Link to="/user/:uid/website/:wid/page">Blogger</Link>
-                        <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                    </li>
-                    <li className="list-group-item">
-                        <Link to="/user/:uid/website/:wid/page">Blogging App</Link>
-                        <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                    </li>
-                    <li className="list-group-item">
-                        <Link href="/user/:uid/website/:wid/page">Script Testing App</Link>
-                        <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-                    </li>
-    </ul> }
-        </section>
+            <nav className="navbar navbar-dark bg-primary fixed-top">
+                <Link to={`/user/${uid}`} >
+                    <i className="fas fa-chevron-left" />
+                </Link>
+                <span className="navbar-brand mb-0 h1">
+                  Websites
+                </span>
+                <Link
+                   to={`/user/${uid}/website/new`} >
+                   <i className="fas fa-plus" />
+                </Link>
+            </nav>
+
+            <section className="container">
+                 <ul className="list-group"> 
+                    {
+                      this.state.websites.map(
+                        (website) => (
+                          <li key={website._id} className="list-group-item">
+                            <Link to={`/user/${uid}/website/${website._id}/page`}>{website.name}</Link>
+                            <Link to={`/user/${uid}/website/${website._id}`} className="float-right">
+                                < i className="fas fa-cog" />
+                            </Link>
+                          </li>
+                            )
+                          )
+                        }
+                </ul> 
+             </section>
+
+        <nav className="navbar navbar-dark bg primary fixed-bottom">
+                  <Link
+                    to={`/user/${uid}`}>
+                    <i className="fas fa user" />
+                  </Link>
+        </nav>
       </div>
-      </div>
-    )
+    );
   }
 }
