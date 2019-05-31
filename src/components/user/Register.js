@@ -47,7 +47,7 @@ export default class Register extends Component {
       };   
       //send to server   
       const res2 = await axios.post("/api/user", newUser);
-      this.props.histroy.push(`/user/${res2.data._id}`);
+      this.props.history.push(`/user/${res2.data._id}`);
   }
 
  }
