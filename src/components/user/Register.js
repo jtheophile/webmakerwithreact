@@ -60,8 +60,8 @@ export default class Register extends Component {
         <h1>Register</h1> 
         <form onSubmit={this.onSubmit}>
             <div className="form-group">
-                <input 
-                  placeholder="Enter Username"
+              <label htmlFor="password">Username</label>
+                <input
                   className="form-control"
                   type="text"
                   id="username"
@@ -71,20 +71,19 @@ export default class Register extends Component {
                   />
             </div>
             <div className="form-group">
+                <label htmlFor="password">Password</label>
                 <input
-                placeholder="Enter Password"
                 className="form-control"
                 type="password"
-                id="Password"
+                id="password"
                 name="password"
                 onChange={this.onChange}
-                value={password}
-                
+                value={password}                
                 />
             </div> 
             <div className="form-group">
-                    <input 
-                    placeholder="Verify Password"
+              <label htmlFor="password">Verify Password</label>
+                    <input
                     className="form-control"
                     type="password"
                     id="password2"
@@ -99,11 +98,11 @@ export default class Register extends Component {
                 Register
             </button>
             <Link 
-              className="btn btn-danger btn-block" to="/login">
+              className="btn btn-danger btn-block" 
+              to="/login">
               Cancel
             </Link>
         </form>
-    </div>
     </div>
     )
   }
