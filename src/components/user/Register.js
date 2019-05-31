@@ -88,7 +88,7 @@ export default class Register extends Component {
                     placeholder="Verify Password"
                     className="form-control"
                     type="password"
-                    id="Password"
+                    id="Password2"
                     name="password2"
                     onChange={this.onChange} 
                     value={password2}
