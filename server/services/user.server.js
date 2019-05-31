@@ -9,7 +9,7 @@ module.exports = function(app) {
 
 // to listen to incoming requests (verifying user logins) (find by username and password)
 //  (api = application programming interface - this path is not pointing to the real page but rather it is pulling the data from somewhere else)
-app.get("/api/user", ()=> {
+app.get("/api/user", (req, res)=> {
       const username = req.query["username"];
       const password = req.query["password"];
       let user;
