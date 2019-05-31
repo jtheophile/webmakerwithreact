@@ -32,7 +32,6 @@ app.use(function(req, res, next) {
 
 const port = process.env.PORT || '3100';
 app.set('port', port);
-node
 // Create HTTP server
 const server = http.createServer(app);
 
