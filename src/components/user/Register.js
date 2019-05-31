@@ -41,7 +41,6 @@ export default class Register extends Component {
           _id: uuid(),
           username,
           password,
-          password2,
           email: "",
           firstName: "",
           lastName: ""
@@ -94,10 +93,15 @@ export default class Register extends Component {
                     value={password2}
                     />
             </div>
-            <div>
-                <button className="btn btn-primary btn-block">Register</button>
-                <Link to="/login" className="btn btn-danger btn-block">Cancel</Link>
-            </div>      
+
+            <button 
+              className="btn btn-primary btn-block">
+                Register
+            </button>
+            <Link 
+              className="btn btn-danger btn-block" to="/login">
+              Cancel
+            </Link>
         </form>
     </div>
     </div>
