@@ -63,7 +63,7 @@ export default class WebsiteEdit extends Component {
 
         delete = async () => {
             // website delete - server function to delete sites await axios.delete(`/api/website/${this.state.wid}`);
-            await axios.delete.name(`/api/website/${this.props.mathch.params.wid}`);
+            await axios.delete.name(`/api/website/${this.state.wid}`);
             this.props.history.push(`/user/${this.state.uid}/website`);
         };
 
@@ -85,19 +85,22 @@ export default class WebsiteEdit extends Component {
             <div>
                 <nav className="navbar navbar-dark bg-primary fixed-top row">
                 <div className="col-lg-4 d-none d-lg-block text-center text white">
-                    <Link to={`/user/${uid}/website`}>
-                        <i className="fas fa-chevron-lef float-left" />
+                    <Link 
+                        className="float-left"
+                        to={`/user/${uid}/website`}>
+                        <i className="fas fa-chevron-lef" />
                     </Link>
 
                     <span>Websites</span>
-
-                    <Link to={`/user/${uid}/website/new`}>
-                        <i className="fas fa-plus float-right" />
+                    <Link className="float-right"
+                        to={`/user/${uid}/website/new`}>
+                        <i className="fas fa-plus" />
                     </Link>
                 </div>
                 
                 <div className="col-lg-8 text-center text-white">
-                    <Link className="d-lg-none float-left" to={`/user/${uid}/website`} >
+                    <Link className="d-lg-none float-left" 
+                        to={`/user/${uid}/website`} >
                         <i className="fas a chevron-left" /> 
                     </Link>
                     <span>Edit Website</span>
@@ -106,8 +109,9 @@ export default class WebsiteEdit extends Component {
                     </button>
                 </div>
             </nav>
-            {/* <!-- BODY LEFT --> */}
-            <section className="row">
+         
+         
+            <div className="row">
                 <div className="col-lg-4 d-none d-sm-block">
                     <div className="container-fluid">
                         <ul className="list-group">
@@ -126,7 +130,7 @@ export default class WebsiteEdit extends Component {
                             </ul>
                         </div>
                     </div>
-                </section>           
+                </div>           
                        
                 {/* <!-- BODY RIGHT --> */}
                 <div className="col-sm-8">
