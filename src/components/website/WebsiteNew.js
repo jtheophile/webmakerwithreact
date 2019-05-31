@@ -14,7 +14,7 @@ export default class WebsiteNew extends Component {
       // initializes the list
       async componentDidMount() {
         const res = await axios.get(`/api/user/(${this.state.uid}/website)`);
-        this.filterWebsite(res.data);
+        this.filterWebsites(res.data);
       }
 
       filterWebsites = websites => {
@@ -100,13 +100,14 @@ export default class WebsiteNew extends Component {
                       <label htmlFor="name">
                         <b>Name</b>
                       </label>                      
-                      <input placeholder="Enter Website name here" 
+                      <input 
+                      placeholder="Enter Website name here" 
                       className="form-control" 
                       type="text" 
                       id="name" 
                       name="Name"
                       onChange={this.onChange}
-                      value="{this.state.name"
+                      value={this.state.name}
                       />
                     </div>
                     <div className="form-group">
