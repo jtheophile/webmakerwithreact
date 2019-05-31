@@ -20,7 +20,7 @@ export default class WebsiteEdit extends Component {
 
         filterWebsites = websites => {
             const newWebsites = websites.filter(
-                (website)=> (website.developerId === this.state.uid)
+                website => website.developerId === this.state.uid
             );
 
             // const newWebites = websites.filter(

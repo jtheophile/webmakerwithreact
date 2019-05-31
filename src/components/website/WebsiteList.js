@@ -14,7 +14,7 @@ export default class WebsiteList extends Component {
         this.filterWebsites(res.data);                                   
     }
 
-    filterWebsite = (websites) => {
+    filterWebsites = (websites) => {
         const websiteNew = websites.filter(
           website => (website.developerId === this.state.uid)
         )
