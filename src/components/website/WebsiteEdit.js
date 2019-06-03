@@ -62,7 +62,8 @@ export default class WebsiteEdit extends Component {
         };
 
         delete = async () => {
-            // website delete - server function to delete sites await axios.delete(`/api/website/${this.state.wid}`);
+            // website delete - server function to delete sites await axios.delete
+            
             await axios.delete(`/api/website/${this.state.wid}`);
             this.props.history.push(`/user/${this.state.uid}/website`);
         };
@@ -87,7 +88,7 @@ export default class WebsiteEdit extends Component {
                 <div className="col-lg-4 d-none d-lg-block text-center text white">
                     <Link 
                         className="float-left"
-                        to={`/user/${uid}/website/new`}>
+                        to={`/user/${uid}/website`}>
                         <i className="fas fa-chevron-left" />
                     </Link>
 
