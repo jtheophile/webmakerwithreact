@@ -117,13 +117,13 @@ export default class Profile extends Component {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="LastName">Last Name</label> 
+                <label htmlFor="LastName">Last Name</label>
                 <input 
                 placeholder="Enter Your Last Name" 
                 className="form-control" 
                 type="text" 
-                id="lastname" 
-                name="lastname" 
+                id="lastName" 
+                name="lastName" 
                 value={lastName}
                 onChange={this.onChange}
                 />
@@ -136,7 +136,7 @@ export default class Profile extends Component {
                         Websites
                 </Link>
                 <Link 
-                    className="btn btn-danger btn-block" 
+                    className="btn btn-success btn-block" 
                     to="/login">
                 Logout
                 </Link>                  

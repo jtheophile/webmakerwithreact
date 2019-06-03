@@ -38,11 +38,11 @@ export default class WebsiteNew extends Component {
           const newWeb = {
             _id: uuid(),
             name,
-            developedId: uid,
+            developerId: uid,
             description
           };
           // call the new website from serverside 
-          await axios.post("/api/website", newWeb);    // 2nd parameter is where you are sending it to
+          await axios.post("/api/website", newWeb);    // 2nd parameter is where you are                                                   sending it to
           this.props.history.push(`/user/${this.state.uid}/website`);
           };
 
@@ -66,14 +66,15 @@ export default class WebsiteNew extends Component {
                  </Link>
                           
               <span><strong>New Website</strong></span>
-                  <button className="float-right btn" form="newWebForm">
+                  <button className="float-right btn" 
+                      form="newWebForm">
                       <i className="fas fa-check" />
                   </button>
               </div>
               </nav>
 
 
-            <section className="row">
+            <div className="row">
               <div className="col-lg-4 d-none d-lg-block">
                <div className="container-fluid">
                 <ul className="list-group">
@@ -82,9 +83,11 @@ export default class WebsiteNew extends Component {
                       key={website._id}
                       className="list-group-item">
 
-                     <Link to={`/user/${uid}/website/${website._id}/page`}>
+                     <Link 
+                          to={`/user/${uid}/website/${website._id}/page`}>
                           {website.name}
                      </Link>
+
                      <Link to={`/user/${uid}/website/${website._id}`} className="float-right">
                           <i className="fas fa-cog" />
                      </Link>
@@ -111,6 +114,8 @@ export default class WebsiteNew extends Component {
                       value={this.state.name}
                       />
                     </div>
+
+
                     <div className="form-group">
                       <label htmlFor="description">
                         <b>Description</b>
@@ -118,6 +123,7 @@ export default class WebsiteNew extends Component {
                       <textarea 
                           rows="5" 
                           placeholder="Tell us about your website..."
+                          type="text"
                           className="form-control" 
                           id="description"
                           name="description"
@@ -126,51 +132,31 @@ export default class WebsiteNew extends Component {
                           />                          
                     </div>
 
-                    <Link to={`/user/${uid}/website`} className="btn btn-lg btn-warning">
-                      Cancel
+                    <Link 
+                        to={`/user/${uid}/website`} 
+                        className="btn btn-lg btn-warning">
+                        Cancel
                     </Link>
-                    <button className="btn btn-lg btn-success float-right">
+
+                    <button 
+                      className="btn btn-lg btn-success float-right">
                       Submit
                     </button>
                   </form>
                 </div>
               </div>
-            </section>
+            </div>
 
             <nav className="navbar navbar-dark bg-primary fixed-bottom">
                 <div className="full-width">
-                  <Link className="color-white float right" to={`/user/${uid}`} >
-                  <i className="fas fa-user" />
+                  <Link 
+                      className="color-white float right" 
+                      to={`/user/${uid}`} >
+                      <i className="fas fa-user" />
                   </Link>
                     </div>
                 </nav>
               </div>
-                )
+                );
               }
             }
-
-
-
-
-
-            
-
-
-
-        //     <Link className="float-right" to="website-edit.html"><i className="fas fa-cog"></i></Link>
-        //     </li>
-        //     <li className="list-group-item">
-        //       <Link to="/user/:uid/website/:wid/page">Blogger</Link>
-        //       <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-        //     </li>
-        //     <li className="list-group-item">
-        //       <Link to="/user/:uid/website/:wid/page">Blogging App</Link>
-        //       <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-        //     </li>
-        //     <li className="list-group-item">
-        //       <Link to="/user/:uid/website/:wid/page">Script Testing App</Link>
-        //       <Link className="float-right" to="/user/:uid/website/:wid"><i className="fas fa-cog"></i></Link>
-        //     </li>
-        //   </ul>
-        // </div>
-        // </div>
