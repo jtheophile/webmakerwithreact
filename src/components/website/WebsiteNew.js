@@ -13,7 +13,7 @@ export default class WebsiteNew extends Component {
 
       // initializes the list
       async componentDidMount() {
-        const res = await axios.get(`/api/user/(${this.state.uid}/website)`);
+        const res = await axios.get(`/api/user/(${this.state.uid}/website`);
         this.filterWebsites(res.data);
       }
 
@@ -52,7 +52,8 @@ export default class WebsiteNew extends Component {
               <div>
               <nav className="navbar navbar-dark bg-primary fixed-top row">
               <div className="col-lg-4 d-none d-lg-block text-center text white">
-                <Link className="float-left" to={`/user/${uid}/website`} >
+                <Link className="float-left" 
+                      to={`/user/${uid}/website`} >
                       <i className="fas fa-chevron-left" />
                 </Link>                
                 <span className=""><strong>Websites</strong></span>
@@ -128,7 +129,7 @@ export default class WebsiteNew extends Component {
                     <Link to={`/user/${uid}/website`} className="btn btn-lg btn-warning">
                       Cancel
                     </Link>
-                    <button className="btn btn-lg btn-sucess float-right">
+                    <button className="btn btn-lg btn-success float-right">
                       Submit
                     </button>
                   </form>
