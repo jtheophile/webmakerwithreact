@@ -33,7 +33,7 @@ module.exports = function(app) {
               const wid = req.params["wid"];
               const web = websites.find((website) => (website._id === wid));   // looking for wid, then to slice it out
               websites.splice(websites.indexOf(web), l); //use the index to find the right site, only splicing 1
-              res.json(web)  //update user of deletion
+              res.json(web);  //update user of deletion
               })
 
               //update website
@@ -41,7 +41,7 @@ module.exports = function(app) {
                     const newWeb = req.body;
                         websites = websites.map(     //easier looping function than for
                         (website) => {
-                            if(website._id === newWeb_.id) {
+                            if(website._id === newWeb._id) {
                                 website = newWeb
                             }
                             return website;                            
