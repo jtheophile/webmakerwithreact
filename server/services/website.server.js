@@ -32,7 +32,7 @@ module.exports = function(app) {
           app.delete("/api/website/:wid", (req, res) => {
               const wid = req.params["wid"];
               const web = websites.find((website) => (website._id === wid));   // looking for wid, then to slice it out
-              websites.splice(websites.indexOf(web), l); //use the index to find the right site, only splicing 1
+              websites.splice(websites.indexOf(web), 1); //use the index to find the right site, only splicing 1
               res.json(web);  //update user of deletion
               })
 
