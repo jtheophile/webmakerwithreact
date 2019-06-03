@@ -6,7 +6,7 @@ export default class WebsiteList extends Component {
 
     state= {
       uid: this.props.match.params.uid,
-      websites:[]
+      websites: []
     }
 
     async componentDidMount() {

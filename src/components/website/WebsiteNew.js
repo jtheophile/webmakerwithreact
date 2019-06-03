@@ -104,9 +104,9 @@ export default class WebsiteNew extends Component {
                       <input 
                       placeholder="Enter Website name here" 
                       className="form-control" 
-                      type="text" 
+                      type="text"
                       id="name" 
-                      name="Name"
+                      name="name"
                       onChange={this.onChange}
                       value={this.state.name}
                       />
