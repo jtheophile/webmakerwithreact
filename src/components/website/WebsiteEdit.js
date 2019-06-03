@@ -87,12 +87,13 @@ export default class WebsiteEdit extends Component {
                 <div className="col-lg-4 d-none d-lg-block text-center text white">
                     <Link 
                         className="float-left"
-                        to={`/user/${uid}/website`}>
-                        <i className="fas fa-chevron-lef" />
+                        to={`/user/${uid}/website/new`}>
+                        <i className="fas fa-chevron-left" />
                     </Link>
 
-                    <span>Websites</span>
-                    <Link className="float-right"
+                    <span className="">Websites</span>
+                    <Link 
+                        className="float-right"
                         to={`/user/${uid}/website/new`}>
                         <i className="fas fa-plus" />
                     </Link>
@@ -104,7 +105,7 @@ export default class WebsiteEdit extends Component {
                         <i className="fas a chevron-left" /> 
                     </Link>
                     <span>Edit Website</span>
-                    <button form="editWebForm"className="float-right btn">
+                    <button form="editWebForm" className="float-right btn">
                          <i className="fas fa-check" />
                     </button>
                 </div>
@@ -122,8 +123,9 @@ export default class WebsiteEdit extends Component {
                                         <Link to={`/user/${uid}/website/${website._id}/page`} >
                                             {website.name}
                                         </Link>
-                                        <Link to={`/user/${uid}/website/${website._id}`} >
-                                            <i className="fas fa-cog float-right"/>
+                                        <Link to={`/user/${uid}/website/${website._id}`}
+                                            className= "float-right">
+                                            <i className="fas fa-cog" />
                                         </Link>
                                     </li>
                                 ))}
@@ -160,12 +162,13 @@ export default class WebsiteEdit extends Component {
                                 className="form-control"
                                 type="text" 
                                 id="description"
-                                name="name of website"
+                                name="description"
                                 value={this.state.description}
                                 onChange={this.onChange}
                                 />                              
                             </div>
-                            <Link to={`/user.${uid}/website`} className="btn btn-lg btn warning">
+                            <Link to={`/user.${uid}/website`} 
+                                className="btn btn-lg btn warning">
                                 Cancel
                             </Link>
                             <button 
@@ -175,9 +178,8 @@ export default class WebsiteEdit extends Component {
                                     Delete
                             </button>
                         </form>
-                    </div>
-                  
-            </div>
+                    </div>                  
+                </div>
 
             <nav className="navbar navbar-dark bg-primary fixed-bottom">
                 <div className="full-width">
