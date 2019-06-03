@@ -131,12 +131,12 @@ export default class Profile extends Component {
 
             
                 <Link 
-                    className="btn btn-danger btn-block" 
+                    className="btn btn-success btn-block" 
                     to={`/user/${this.props.match.params.uid}/website`} >
                         Websites
                 </Link>
                 <Link 
-                    className="btn btn-success btn-block" 
+                    className="btn btn-danger btn-block" 
                     to="/login">
                 Logout
                 </Link>                  
