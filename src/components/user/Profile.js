@@ -111,7 +111,7 @@ export default class Profile extends Component {
                 className="form-control" 
                 type="text" 
                 id="firstName" 
-                name="FirstName" 
+                name="firstName" 
                 value= {firstName}
                 onChange={this.onChange}
                 />
@@ -122,7 +122,7 @@ export default class Profile extends Component {
                 placeholder="Enter Your Last Name" 
                 className="form-control" 
                 type="text" 
-                id="Lastname" 
+                id="lastname" 
                 name="lastname" 
                 value={lastName}
                 onChange={this.onChange}

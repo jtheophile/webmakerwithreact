@@ -33,7 +33,7 @@ export default class WebsiteNew extends Component {
         };
 
       onSubmit = async e => {
-          const {name, description, uid } = this.state;
+          const { name, description, uid } = this.state;
           e.preventDefault();
           const newWeb = {
             _id: uuid(),
@@ -43,7 +43,7 @@ export default class WebsiteNew extends Component {
           };
           // call the new website from serverside 
           await axios.post("/api/website", newWeb);    // 2nd parameter is where you are sending it to
-          this.props.history.push(`/user.${this.state.uid}/website`);
+          this.props.history.push(`/user/${this.state.uid}/website`);
           };
 
       render() {
