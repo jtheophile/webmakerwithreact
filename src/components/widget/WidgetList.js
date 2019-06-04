@@ -37,10 +37,9 @@ export default class WidgetList extends Component {
                     to={`/user/${uid}/website/${wid}/page`}>
                     <i className="fas fa-chevron-left" />
                 </Link>
-                <span className="navbar-brand">
-                   Widgets
+                <span className="navbar-brand m10">
+                   <b>Widgets</b>
                  </span>
-
                 <Link className="color-black"
                     to={`/user/${uid}/website/${wid}/page/${pid}/widget/new`}>
                     <i className="fas fa-plus" />

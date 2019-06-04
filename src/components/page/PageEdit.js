@@ -7,13 +7,14 @@ export default class PageEdit extends Component {
     state = {
         uid: "",
         wid: "",
+        pid: "",
         name: "",
         title: ""
     }
 
     // get user page
-    componentDidMount() {
-            this.setState({
+    async componentDidMount() {
+            await this.setState({
                 uid: this.props.match.params.uid,
                 wid: this.props.match.params.wid,
                 pid: this.props.match.params.pid
@@ -46,15 +47,15 @@ export default class PageEdit extends Component {
         const newPage = {
             _id: this.state.pid,
             name: this.state.name,
-            websiteId: this.state.name,
+            websiteId: this.state.wid,
             title: this.state.title
         }
         await axios.put("/api/page", newPage);
-        this.props.history.push(`/user/${this.state.uid}/wbsite/${this.state.wid}/page`)
+        this.props.history.push(`/user/${this.state.uid}/website/${this.state.wid}/page`)
     }
                                  
     render() {
-        const {uid, wid, name, title} = this.state;
+        const {uid, wid, name, title} = this.state
 
         return (
         <div>
@@ -64,9 +65,9 @@ export default class PageEdit extends Component {
                         <i className="fas fa-chevron-left" />
                     </Link>
                     <span className="navbar-brand">
-                        New Page
+                        Edit Page
                     </span>
-                    <button className="color-black" form="newPageForm">
+                    <button className="color-black" form="editPageForm">
                         <i className="fas fa-check" />                
                     </button>
             </nav>
@@ -102,7 +103,7 @@ export default class PageEdit extends Component {
                     onChange={this.onChange}
                     />
             </div>
-            <Link to={`/user/:uid/website/${wid}/page`} className="btn btn-lg btn warning">
+            <Link to={`/user/${uid}/website/${wid}/page`} className="btn btn-lg btn warning">
                 Cancel
             </Link>
             <button
