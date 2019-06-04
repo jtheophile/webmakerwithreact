@@ -56,7 +56,8 @@ export default class WebsiteNew extends Component {
                       to={`/user/${uid}/website`} >
                       <i className="fas fa-chevron-left" />
                 </Link>                
-                <span className=""><strong>Websites</strong></span>
+                <span className="" 
+                className="text-white"><strong>Websites</strong></span>
                 <span className="float-right">< i className="fas fa-plus" /></span>
               </div>
 
