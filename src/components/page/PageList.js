@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 export default class PageList extends Component {
 
@@ -15,12 +15,12 @@ export default class PageList extends Component {
                 uid: this.props.match.params.uid,
                 wid: this.props.match.params.wid
             })
-            this.filterPage(this.state.wid);  //filter the pages that match these attributes
-            
-    }
+            this.filterPage(this.state.wid);  //filter the pages that match these attributes            
+        }
+
 
     filterPage = async (wid) => {
-        const res = await axios.get(`{api/website/${this.state.wid}/page}`)
+        const res = await axios.get(`/api/website/${this.state.wid}/page`)
         this.setState({
             pages: res.data
         })
@@ -37,7 +37,7 @@ export default class PageList extends Component {
                 <span className="navbar-brand">
                     Pages
                 </span>
-                <Link className="color-black" to={`/user/${uid}/website/${wid}/pages/new`}>
+                <Link className="color-black" to={`/user/${uid}/website/${wid}/page/new`}>
                     <i className="fas fa-plus" />                
                 </Link>
           </nav>
@@ -47,9 +47,9 @@ export default class PageList extends Component {
                 {
                     this.state.pages.map(
                         (page) => (
-                            <li key={page.id} className="list-group-item">
+                            <li key={page._id} className="list-group-item">
                                 <Link to={`/user/${uid}/website/${wid}/page/${page._id}/widget`}>{page.name}</Link>
-                                <Link className="float-right" to={`/user/${uid}/website/${wid}/page/{${page._id}`} >
+                                 <Link className="float-right" to={`/user/${uid}/website/${wid}/page/{${page._id}`} >
                                     <i className="fas fa-cog" />
                                 </Link>
                             </li>
@@ -58,16 +58,17 @@ export default class PageList extends Component {
                 }
             </ul>
         </div>
-
-        <footer className="navbar navbar-light fixed bottom bg-light">
-             <div className="full-width">
-                <Link className="color-black float-right" to={`/user/${uid}`}> 
-                     <i className="fas fa-user" /> 
-                </Link>
-            </div>
-        </footer>
-      </div>
-    );
-  }
-}
-
+  
+        <footer className="navbar navbar-light fixed-bottom bg-light">
+                <div className="full-width">
+                    <Link 
+                      className="color-black float-right" 
+                      to={`/user/${uid}`}>
+                      <i className="fas fa-user" />
+                    </Link>
+                </div>
+        </footer>      
+    </div>  
+                );
+              }
+            }

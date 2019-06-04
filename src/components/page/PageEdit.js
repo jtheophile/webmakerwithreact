@@ -114,7 +114,7 @@ export default class PageEdit extends Component {
             </form>
         </div>
 
-        <footer className="navbar navbar-light fixed bottom bg-light">
+        <footer className="navbar navbar-light fixed-bottom bg-light">
             <div className="full-width">
                 <Link
                     className="color-black float-right" 

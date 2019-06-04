@@ -18,7 +18,7 @@ import PageNew from "./components/page/PageNew";
 import PageEdit from "./components/page/PageEdit";
 // widgets
 import WidgetList from "./components/widget/WidgetList";
-import WidgetChooser from "./components/widget/WidgetEdit";
+import WidgetChoose from "./components/widget/WidgetChoose";
 import WidgetEdit from "./components/widget/WidgetEdit";
 
 class App extends Component {
@@ -39,7 +39,7 @@ class App extends Component {
                       <Route exact path="/user/:uid/website/:wid/page/new" component={PageNew} />
                       <Route exact path="/user/:uid/website/:wid/page/:pid" component={PageEdit} />
                       <Route exact path="/user/:uid/website/:wid/page/:pid/widget" component={WidgetList} />
-                      <Route exact path="/user/:uid/website/:wid/page/:pid/widget/new" component={WidgetChooser} />
+                      <Route exact path="/user/:uid/website/:wid/page/:pid/widget/new" component={WidgetChoose} />
                       <Route exact pather="/user/:uid/website/:wid/page/:pid/widget/:wgid" componenet={WidgetEdit} />
                   </Switch>
               </Router>

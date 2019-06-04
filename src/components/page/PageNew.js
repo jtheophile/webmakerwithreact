@@ -31,11 +31,11 @@ export default class PageNew extends Component {
         const newPage = {
             _id: uuid(),
             name: this.state.name,
-            websiteId: this.state.name,
+            websiteId: this.state.wid,
             title: this.state.title
         }
         await axios.post("/api/page", newPage); //asking the server for the new page; post is to add new things
-        this.props.history.push(`/user/${this.state.uid}/wbsite/${this.state.wid}/page`)
+        this.props.history.push(`/user/${this.state.uid}/website/${this.state.wid}/page`)
     }
                                  
     render() {
@@ -44,13 +44,15 @@ export default class PageNew extends Component {
         return (
         <div>
             <nav className="navbar navbar-light fixed-top bg-light">
-                    <Link className="color-black" to={`/user/${uid}/website/${wid}/page`}>
+                    <Link className="color-black" 
+                        to={`/user/${uid}/website/${wid}/page`}>
                         <i className="fas fa-chevron-left" />
                     </Link>
                     <span className="navbar-brand">
                         New Page
                     </span>
-                    <button className="color-black" form="newPageForm">
+                    <button
+                        className="color-black btn" form="newPageForm">
                         <i className="fas fa-check" />                
                     </button>
             </nav>
@@ -86,24 +88,31 @@ export default class PageNew extends Component {
                     onChange={this.onChange}
                     />
             </div>
-            <Link to={`/user/:uid/website/${wid}/page`} className="btn btn-lg btn warning">
+            <Link 
+                to={`/user/${uid}/website/${wid}/page`} 
+                className="btn btn-lg btn-warning">
                 Cancel
             </Link>
             <button
-                className="btn btn-lg btn-sucess float-right">
+                className="btn btn-lg btn-success float-right">
             Submit
             </button>    
             </form>
         </div>
+       
 
-        <footer className="navbar navbar-light fixed bottom bg-light">
+        <footer className="navbar navbar-light fixed-bottom bg-light">
             <div className="full-width">
                 <Link
-                    className="color-black cloat-right" to={`/user/${uid}`}>
+                    className="color-black float-right" 
+                    to={`/user/${uid}`}>
+                    < i className="fas fa-user" />
                 </Link>
             </div>
         </footer>
     </div>
+         
+   
        );
     }
 }

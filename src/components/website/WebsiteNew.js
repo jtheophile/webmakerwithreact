@@ -51,14 +51,14 @@ export default class WebsiteNew extends Component {
             return (
               <div>
               <nav className="navbar navbar-dark bg-primary fixed-top row">
-              <div className="col-lg-4 d-none d-lg-block text-center text white">
+              <div className="col-lg-4 d-none d-lg-block text-center text-white">
                 <Link className="float-left" 
                       to={`/user/${uid}/website`} >
                       <i className="fas fa-chevron-left" />
                 </Link>                
-                <span className="" 
-                className="text-white"><strong>Websites</strong></span>
-                <span className="float-right">< i className="fas fa-plus" /></span>
+                <span className=""><strong>Websites</strong></span>
+                <span className="float-right">
+                  < i className="fas fa-plus" /></span>
               </div>
 
               <div className="col-lg-8 text-center text-white">

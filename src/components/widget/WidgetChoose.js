@@ -5,11 +5,11 @@ import Axios from "axios";
 
 export default class WidgetChoose extends Component {
 
-        createwidget = type => {
+        createWidget = type => {
             const {uid, wid, pid} = this.props.match.params
             const newWidget = {
                 _id: uuid(),
-                name:"",
+                name: "",
                 widgetType: type,
                 pageId: pid,
                 text: "",
@@ -26,17 +26,20 @@ export default class WidgetChoose extends Component {
       return (
             <div>
                 <nav className="navbar navbar-light bg-light fixed-top">
-                    <Link to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
+                    <Link 
+                        to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
                         <i className="fas fa-chevron-left" />
-                        <span className="navbar-brand padding-left">Chooser Widget</span>
-                        <span></span>
                     </Link>
+                        <span className="navbar-brand padding-left">
+                            Widget Chooser
+                        </span>
+                    <span></span>
                 </nav>
 
                 <div className="container">
-                    <ul className="list-group list-group-flush">
+                    <ul className="list-group-flush">
                         <li className="list-group-item">
-                            <span onClick={this.createwidget.bind(this, "HEADING")}>
+                            <span onClick={this.createWidget.bind(this, "HEADING")}>
                                 Heading
                             </span>
                         </li>
@@ -58,13 +61,13 @@ export default class WidgetChoose extends Component {
                         </li>
 
                         <li className="list-group-item">
-                            <span onClick={this.createwidget.bind(this,"IMAGE")}>
+                            <span onClick={this.createWidget.bind(this,"IMAGE")}>
                                 Image                                
                             </span>
                         </li>
                         
                         <li className="list-group-item">
-                            <span onClick={this.createwidget.bind(this,"YOUTUBE")}>
+                            <span onClick={this.createWidget.bind(this,"YOUTUBE")}>
                                 Youtube
                             </span>
                         </li>

@@ -91,7 +91,7 @@ export default class WebsiteEdit extends Component {
                         <i className="fas fa-chevron-left" />
                     </Link>
 
-                    <span className="">Websites</span>
+                    <span className=""><strong>Websites</strong></span>
                     <Link 
                         className="float-right"
                         to={`/user/${uid}/website/new`}>
@@ -104,7 +104,7 @@ export default class WebsiteEdit extends Component {
                         to={`/user/${uid}/website`} >
                         <i className="fas a chevron-left" /> 
                     </Link>
-                    <span>Edit Website</span>
+                    <span><strong>Edit Website</strong></span>
                     <button form="editWebForm" className="float-right btn">
                          <i className="fas fa-check" />
                     </button>
@@ -113,7 +113,8 @@ export default class WebsiteEdit extends Component {
          
          
             <div className="row">
-                <div className="col-lg-4 d-none d-sm-block">
+                <div className="col-lg-4 d-none d-lg-block">  
+                {/* hide on screens smaller than lg  */}
                     <div className="container-fluid">
                         <ul className="list-group">
                                 {this.state.websites.map(website => (
@@ -132,10 +133,10 @@ export default class WebsiteEdit extends Component {
                             </ul>
                         </div>
                     </div>
-                </div>           
+                           
                        
                 {/* <!-- BODY RIGHT --> */}
-                <div className="col-sm-8">
+                <div className="col-lg-8">
                     <div className="container-fluid">
                         <form id="editWebForm" onSubmit={this.onSubmit}>
                             <div className="form-group">
@@ -167,7 +168,7 @@ export default class WebsiteEdit extends Component {
                                 onChange={this.onChange}
                                 />                              
                             </div>
-                            <Link to={`/user.${uid}/website`} 
+                            <Link to={`/user/${uid}/website`} 
                                 className="btn btn-lg btn warning">
                                 Cancel
                             </Link>
@@ -180,7 +181,7 @@ export default class WebsiteEdit extends Component {
                         </form>
                     </div>                  
                 </div>
-
+            </div>
             <nav className="navbar navbar-dark bg-primary fixed-bottom">
                 <div className="full-width">
                 <Link 

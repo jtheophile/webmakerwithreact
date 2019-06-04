@@ -34,7 +34,7 @@ getWidget = async (wgid) => {
         name: currentWidget.name? currentWidget.name : "",
         text: currentWidget.text,
         size: currentWidget.size,
-        widgetType:currentWidget.widgetType,
+        widgetType: currentWidget.widgetType,
         width: currentWidget.width,
         url: currentWidget.url
     });
@@ -49,7 +49,7 @@ onChange = e => {
 onSubmit = e => {
 e.preventDefault();
 const {name, size, text, url, width, widgetType, uid, wid, pid} = this.state;
-const {newWidget} = {
+const newWidget = {
     _id: this.props.match.params.wgid,
     pageId: pid,
     name, 
@@ -61,12 +61,12 @@ const {newWidget} = {
 }
 
     Axios.put("/api/widget", newWidget);
-    this.props.history.push(`/user.${uid}/website/${wid}/page/${pid}/widget`)
+    this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
 }
 
 onDelete = () => {
     const {uid, wid, pid} = this.state;
-    Axios.delete(`/api/widget/${this.props.match.wgid}`)
+    Axios.delete(`/api/widget/${this.props.match.params.wgid}`)
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
 }
                          
@@ -87,7 +87,7 @@ if (widgetType === "HEADING") {
         />
     );
 
-    } else if(widgetType ==="IMAGE") {
+    } else if(widgetType === "IMAGE") {
         return (
             <WidgetImage
                 name={name}

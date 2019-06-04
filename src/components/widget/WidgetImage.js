@@ -19,13 +19,13 @@ export default class WidgetImage extends Component {
       const {uid, wid, pid, name, width, url} = this.props
         return (
             <div>
-              <nav className="navbar navbar-light bg-light fixed top">
+              <nav className="navbar navbar-light fixed top bg-light">
               <Link className="color-black"
                     to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
-                    <i className="fas fa-chvron-left" />
+                    <i className="fas fa-chevron-left" />
                 </Link>
-              <span className="navbar-brand mb-0 h1">
-                Widget Edit              
+              <span className="navbar-brand">
+                Edit Widget              
               </span>
               
               <button className="color-black btn" form="imgForm">
@@ -35,12 +35,13 @@ export default class WidgetImage extends Component {
           <div className="container">
               <form id="imgForm" onSubmit={this.onSubmit}>
                   <div className="form-group">
-                    <label htmlFor="Name">
+                    <label htmlFor="name">
                       <b>Name</b>
                     </label>
                     <input
                       type="text"
                       id="name"
+                      name="name"
                       onChange={this.onChange}
                       value={name}
                       className="form-control"
@@ -54,10 +55,10 @@ export default class WidgetImage extends Component {
                     <input
                       type="text"
                       id="url"
+                      name="url"
                       onChange={this.onChange}
                       value={url}
                       className="form-control"
-                      name="url"
                     />
                   </div>
 
@@ -77,11 +78,10 @@ export default class WidgetImage extends Component {
 
                   <button 
                     type="button"
-                    onClick={this.onChange}
+                    onClick={this.onDelete}
                     className="btn btn-danger btn-block" >
                       Delete
                   </button>
-
               </form>
           </div>
           <footer className="navbar navbar-light fixed-bottom bg-light">
