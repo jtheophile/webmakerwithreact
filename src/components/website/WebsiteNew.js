@@ -13,7 +13,7 @@ export default class WebsiteNew extends Component {
 
       // initializes the list
       async componentDidMount() {
-        const res = await axios.get(`/api/user/(${this.state.uid}/website`);
+        const res = await axios.get(`/api/user/${this.state.uid}/website`);
         this.filterWebsites(res.data);
       }
 
