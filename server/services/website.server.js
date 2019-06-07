@@ -1,21 +1,20 @@
 module.exports = function(app) {
+    const websiteModel = require("../models/website/website.model");
+
+
     // use let (not const) becuase you are updating it and const is already being used
     
             // Find all websites for given user id
-            app.get("/api/user/:uid/website", (req, res) => {
+            app.get("/api/user/:uid/website", async (req, res) => {
                 const uid = req.params["uid"];
-                const result = websites.filter(
-                (website) => (
-                    website.developerId === uid
-                )
-            )
-            res.json(result);
-          })
+                const websites = await websiteModel.findAllWebsitesForUser(uid);
+                res.json(websites);
+            });
 
           // Create new website function 
           app.post("/api/website", (req, res) => {
               const newWeb =req.body;    //new website
-              websites.push(newWeb);     //push new website into array
+              const data = await websiteModel.creatWWIGDGet      //push new website into array
               res.json(newWeb);          // send this new website to the client
           })          
 

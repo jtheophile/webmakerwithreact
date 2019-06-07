@@ -17,6 +17,8 @@ export default class Register extends Component {
         })
       }
 
+      //function to change for hidden buttons 6.7
+
     onSubmit = e => {
       e.preventDefault();
       const {username, password, password2} = this.state;
@@ -58,6 +60,8 @@ export default class Register extends Component {
       <div>
         <div className="container">
         <h1>Register</h1> 
+        <div className="alert-alert danger">No user found with these credentials</div>
+        <div className="alert-alert danger">The username is taken, please try another one.</div>
         <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label htmlFor="password">Username</label>
