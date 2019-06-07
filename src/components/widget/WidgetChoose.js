@@ -25,7 +25,7 @@ export default class WidgetChoose extends Component {
       const {uid, wid, pid} = this.props.match.params
       return (
             <div>
-                <nav className="navbar navbar-light bg-light fixed-top">
+                <nav className="navbar navbar-light fixed-top bg-light">
                     <Link 
                         to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
                         <i className="fas fa-chevron-left" />

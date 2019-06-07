@@ -131,7 +131,7 @@ export default class Profile extends Component {
 
             
                 <Link 
-                    className="btn btn-success btn-block" 
+                    className="btn btn-primary btn-block" 
                     to={`/user/${this.props.match.params.uid}/website`} >
                         Websites
                 </Link>

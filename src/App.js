@@ -24,7 +24,6 @@ import WidgetEdit from "./components/widget/WidgetEdit";
 class App extends Component {
 
       render () {
-
           return (
               <Router>
                   <Switch>
@@ -43,6 +42,8 @@ class App extends Component {
                       <Route exact pather="/user/:uid/website/:wid/page/:pid/widget/:wgid" componenet={WidgetEdit} />
                   </Switch>
               </Router>
-      )};
-    }      
-      export default App;
+      );
+    }
+}      
+
+export default App;
