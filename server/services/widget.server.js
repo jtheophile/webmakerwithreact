@@ -1,61 +1,39 @@
 module.exports = function(app) {
-    let widgets = [
-              {widgetType: "HEADING", pageId: "321", size: 2, text: "GIZMODO"},
-              {widgetType: "HEADING", pageId: "321", size: 4, text: "Lorem ipsum"},
-              {widgetType: "IMAGE", pageId: "321", width: "100%", url: "https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg"},
-              {widgetType: "HEADING", pageId: "321", size: 4, text: "Lorem ipsum"},
-              {widgetType: "YOUTUBE", pageId: "321", width: "100%", url: "https://youtu.be/AM2Ivdi9c4E" },
-            ];
 
-    //find widgets by the id
-    app.get("/api/page/:pid/widget", (req, res)=>{
+    const widgetModel = require("../models/widget/widget.model")
+
+    //find widgets by given page id
+    app.get("/api/page/:pid/widget", async (req, res)=>{
         const pid = req.params["pid"]
-        const result = widgets.filter(            
-            (widget) => {                               // format for when a method takes a function 
-                return widget.pageId === pid            
-            }
-        )
-        res.json(result)
-    })
+        const widgets = await widgetModel.findWidgetsForPage(pid);
+        res.json(widgets);
+    });
 
     // create new widget
-    app.post("/api/widget", (req, res) => {
+    app.post("/api/widget", async (req, res) => {
         const newWidget = req.body;
-        widgets.push(newWidget);
-        res.json(newWidget);
-    })
+        const data = await widgetModel.createWidget(newWidget);
+        res.json(data);
+    });
 
     // get widgets by id
-    app.get("/api/widget/:wgid", (req, res)=> {
+    app.get("/api/widget/:wgid", async (req, res)=> {
         const wgid = req.params["wgid"];
-        const widget = widgets.find(
-            (widget) => (widget._id === wgid)
-        )
+        const widget = await widgetModel.findWidget(wgid)
         res.json(widget);
     })
 
     //update widget
-    app.put("/api/widget", (req, res)=> {
+    app.put("/api/widget", async (req, res)=> {
         const newWidget = req.body;
-        widgets = widgets.map(
-            (widget) => {
-                if(widget._id === newWidget._id) {
-                    widget = newWidget;
-                }
-                return widget;
-            }
-        )
-        res.json(newWidget);
-    })
+        const data = await widgetModel.updateWidget(newWidget);
+        res.json(data);
+    });
 
     //delete widget by give id
-    app.delete("/api/widget/:wgid", (req, res) => {
+    app.delete("/api/widget/:wgid", async (req, res) => {
         const wgid = req.params["wgid"];
-        const widget = widgets.find(
-            (widget) => (widget._id === wigid)
-        );
-        const index = widgets.indexOf(widget);
-        widgets.splice(index, 1);
-        res.json(widget);
-    })
-}
+        const data = await widgetsModel.deleteWidget(wgid);        
+        res.json(data);
+    });
+};

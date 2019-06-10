@@ -4,7 +4,7 @@ import Axios from "axios";
 
 export default class WidgetChoose extends Component {
 
-        createWidget = type => {
+        createWidget = async type => {
             const {uid, wid, pid} = this.props.match.params
             const newWidget = {
                 name: "",
@@ -15,8 +15,8 @@ export default class WidgetChoose extends Component {
                 width: "",
                 url: ""
             }
-            Axios.post("/api/widget", newWidget);
-            this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget/${newWidget._id}`)
+            const res = await Axios.post("/api/widget", newWidget);
+            this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget/${res.data._id}`)
         }
     
   render() {
