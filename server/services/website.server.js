@@ -1,8 +1,5 @@
 module.exports = function(app) {
     const websiteModel = require("../models/website/website.model");
-
-
-    // use let (not const) becuase you are updating it and const is already being used
     
             // Find all websites for given user id
             app.get("/api/user/:uid/website", async (req, res) => {
@@ -11,12 +8,12 @@ module.exports = function(app) {
                 res.json(websites);
             });
 
-          // Create new website function 
-          app.post("/api/website", async (req, res) => {
+           // Create new website function 
+           app.post("/api/website", async (req, res) => {
               const newWeb =req.body;    
-              const data = websiteModel.createWebsite(newWeb);
+              const data = await websiteModel.createWebsite(newWeb);
               res.json(data);         
-          })          
+          });          
 
           // delete website with given wid
           app.delete("/api/website/:wid", async (req, res) => {

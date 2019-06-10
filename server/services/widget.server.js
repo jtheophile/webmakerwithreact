@@ -1,6 +1,6 @@
 module.exports = function(app) {
 
-    const widgetModel = require("../models/widget/widget.model")
+    const widgetModel = require("../models/widget/widget.model");
 
     //find widgets by given page id
     app.get("/api/page/:pid/widget", async (req, res)=>{
@@ -21,7 +21,7 @@ module.exports = function(app) {
         const wgid = req.params["wgid"];
         const widget = await widgetModel.findWidget(wgid)
         res.json(widget);
-    })
+    });
 
     //update widget
     app.put("/api/widget", async (req, res)=> {

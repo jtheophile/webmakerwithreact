@@ -1,10 +1,11 @@
 module.exports = function(app) {
 
       const userModel = require("../models/user/user.model");
-    // users data
+// users data
   
 // to listen to incoming requests (verifying user logins) (find by username and password)
 //  (api = application programming interface - this path is not pointing to the real page but rather it is pulling the data from somewhere else)
+
 app.get("/api/user", async (req, res)=> {
       const username = req.query["username"];
       const password = req.query["password"];
@@ -12,7 +13,7 @@ app.get("/api/user", async (req, res)=> {
       if(username && password) {
             user = await userModel.findUserByCredentials(username, password)
           } else if (username) {
-            user = await userModel.findUsersByUsername(username);
+            user = await userModel.findUserByUsername(username);
           }
           res.json(user);
       });
@@ -25,7 +26,7 @@ app.get("/api/user", async (req, res)=> {
       });
 
       // find by id
-      app.get("/api/user/:uid", (req, res) => {
+      app.get("/api/user/:uid", async (req, res) => {
             const uid = req.params["uid"];
             let user;
             user = await userModel.findUserById(uid);

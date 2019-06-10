@@ -3,7 +3,7 @@ const pageSchema = require("./page.schema");
 const PageModel = mongoose.model("PageModel", PageSchema);
 
 // find all pgs for website
-PageModel.findAllPagesforWebsite = (wid) => {
+PageModel.findAllPagesForWebsite = (wid) => {
     return PageModel.find({websiteId: wid});
 }
 
