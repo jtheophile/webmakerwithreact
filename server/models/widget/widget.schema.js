@@ -10,7 +10,7 @@ const WidgetSchema = mongoose.Schema(
         width: String, 
         size: Number,
         dateCreated: { type: Date, default: Date.now}
-}, {collection: widget}
+}, {collection: "widget"}
 );
 
 module.exports= WidgetSchema;

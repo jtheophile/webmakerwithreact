@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 
 // schema is the structure of the user
-const UserSchcema = mongoose.Schema(
+const UserSchema = mongoose.Schema(
     {
         username: String,
         password: String,
@@ -13,4 +13,4 @@ const UserSchcema = mongoose.Schema(
     }, {collection: "user"} //where it is stored in the db
 );
 
-module.exports = UserShcema
+module.exports = UserSchema

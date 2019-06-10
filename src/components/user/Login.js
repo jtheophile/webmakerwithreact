@@ -8,7 +8,6 @@ export default class Login extends Component {
     state = {
         username: "",
         password: "",
-        showAlert: false //checking the login credentials
     }
 
     onChange = e => {
@@ -33,12 +32,9 @@ export default class Login extends Component {
         if(res.data) {
             this.props.history.push(`/user/${res.data._id}`);
         } else {
-            // alert("invalid credentials, please try again");
-            this.setState({
-                showAlert: true
-            })
+            alert("invalid credentials, please try again");
             }
-    }
+        }
 
     render() {
         return (

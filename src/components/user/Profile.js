@@ -13,7 +13,7 @@ export default class Profile extends Component {
         lastName:"",
         oldUsername:""
     }
-    //login
+    
     async componentDidMount (){
             const uid = this.props.match.params.uid;
             const res = await axios.get(`/api/user/${uid}`);         

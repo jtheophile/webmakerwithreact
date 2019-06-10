@@ -58,9 +58,7 @@ export default class Register extends Component {
       <div>
         <div className="container">
         <h1>Register</h1> 
-        <div className="alert-alert danger">No user found with these credentials</div>
-        <div className="alert-alert danger">The username is taken, please try another one.</div>
-        <form onSubmit={this.onSubmit}>
+          <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label htmlFor="password">Username</label>
                 <input
