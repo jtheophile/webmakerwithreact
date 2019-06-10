@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import uuid from "uuid";
 import Axios from "axios";
 
 export default class WidgetChoose extends Component {
@@ -8,7 +7,6 @@ export default class WidgetChoose extends Component {
         createWidget = type => {
             const {uid, wid, pid} = this.props.match.params
             const newWidget = {
-                _id: uuid(),
                 name: "",
                 widgetType: type,
                 pageId: pid,

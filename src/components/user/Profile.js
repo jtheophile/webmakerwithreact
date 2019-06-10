@@ -50,7 +50,7 @@ export default class Profile extends Component {
                     // check if username is available
                     const res = await axios.get(`/apt/user?username=${username}`);
                     if(res.data){
-                        alert("Sorry this username is taken, please try something else.");
+                        alert("This username is taken, please try something else.");
                         return;
                     }
                 }                   
@@ -62,9 +62,8 @@ export default class Profile extends Component {
                         firstName,
                         lastName,
                         }
-                        const res = await axios.put("/api/user", newUser);
-                        alert("Update Successful")
-                        this.showUser(res.data);
+                        await axios.put("/api/user", newUser);
+                        alert("Update Successful!")
                     } 
                 
     render() {

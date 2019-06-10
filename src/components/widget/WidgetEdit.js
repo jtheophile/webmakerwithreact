@@ -49,6 +49,7 @@ onChange = e => {
 onSubmit = e => {
 e.preventDefault();
 const {name, size, text, url, width, widgetType, uid, wid, pid} = this.state;
+
 const newWidget = {
     _id: this.props.match.params.wgid,
     pageId: pid,
@@ -59,7 +60,16 @@ const newWidget = {
     width,
     widgetType
 }
-
+if(widgetType === "YOUTUBE") {
+    // split into an array of strings
+    const splited = newWidget.url.split("/")
+    // count number of strings we have in splitted url
+    const length = splited.length;
+    //got the last element in  splitted url --- video id
+    const videoId = splited[length -1];
+    // parse url into embeded version
+    newWidget.url = "https://www.youtube.com/embed/" +videoId;
+}
     Axios.put("/api/widget", newWidget);
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
 }

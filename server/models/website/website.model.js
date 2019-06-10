@@ -18,7 +18,7 @@ WebsiteModel.deleteWebsite = (wid) => {
 
 // update website
 WebsiteModel.updateWebsite = (website) => {
-    return WebsiteModel.updateOne({_id: website._id} website);
+    return WebsiteModel.updateOne({_id: website._id}, website);
 }
     module.exports = WebsiteModel;
 }
