@@ -4,10 +4,10 @@ import axios from "axios";
 
 export default class WebsiteNew extends Component {
       state = {
-        uid:this.props.match.params.uid,
+        uid: this.props.match.params.uid,
         websites: [],
-        name:"",
-        description:""
+        name: "",
+        description: ""
       };
 
       // initializes the list

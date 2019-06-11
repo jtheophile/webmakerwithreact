@@ -4,7 +4,7 @@ const WebsiteModel = mongoose.model("WebsiteModel", WebsiteSchema);
 
 // find all websites for user
 WebsiteModel.findAllWebsitesForUser = (uid) => {
-    return websiteModel.find({developerId: uid});
+    return WebsiteModel.find({developerId: uid});
 }
 
 // Create website
