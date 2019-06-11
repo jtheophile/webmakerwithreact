@@ -49,7 +49,7 @@ export default class PageList extends Component {
                         (page) => (
                             <li key={page._id} className="list-group-item">
                                 <Link to={`/user/${uid}/website/${wid}/page/${page._id}/widget`}>{page.name}</Link>
-                                 <Link className="float-right" to={`/user/${uid}/website/${wid}/page/{${page._id}`} >
+                                 <Link className="float-right" to={`/user/${uid}/website/${wid}/page/${page._id}`} >
                                     <i className="fas fa-cog" />
                                 </Link>
                             </li>

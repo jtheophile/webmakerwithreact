@@ -27,4 +27,4 @@ PageModel.updatePage = (page) => {
     return PageModel.updateOne({_id: page._id}, page);
     }
 
-    module.exports = PageModel;
+module.exports = PageModel;

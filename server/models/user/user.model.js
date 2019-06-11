@@ -18,7 +18,7 @@ UserModel.findUserByUsername = (username) => {
 }
 
 //find user by id
-UserModel.findUserbyId = (uid) => {
+UserModel.findUserById = (uid) => {
     return UserModel.findById(uid);
 }
 
