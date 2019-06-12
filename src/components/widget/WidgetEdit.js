@@ -28,8 +28,9 @@ componentDidMount() {
 }
 
 getWidget = async (wgid) => {
-    const res = await Axios.get(`/api./widget/${wgid}`);
+    const res = await Axios.get(`/api/widget/${wgid}`);
     const currentWidget = res.data;
+ 
     this.setState({
         name: currentWidget.name? currentWidget.name : "",
         text: currentWidget.text,
@@ -60,6 +61,7 @@ const newWidget = {
     width,
     widgetType
 }
+
 if(widgetType === "YOUTUBE") {
     // split into an array of strings
     const splited = newWidget.url.split("/")
@@ -68,7 +70,7 @@ if(widgetType === "YOUTUBE") {
     //got the last element in  splitted url --- video id
     const videoId = splited[length -1];
     // parse url into embeded version
-    newWidget.url = "https://www.youtube.com/embed/" +videoId;
+    newWidget.url = "https://www.youtube.com/embed/" + videoId;
 }
     Axios.put("/api/widget", newWidget);
     this.props.history.push(`/user/${uid}/website/${wid}/page/${pid}/widget`)
@@ -81,8 +83,8 @@ onDelete = () => {
 }
                          
 render() {
-const {text, size, width, widgetType, url, uid, wid, pid, name} = this.state;
-if (widgetType === "HEADING") {
+const {name, text, size, width, widgetType, url, uid, wid, pid} = this.state;
+if(widgetType === "HEADING") {
     return (
         <WidgetHeading
             name={name}

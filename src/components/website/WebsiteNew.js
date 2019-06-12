@@ -39,8 +39,7 @@ export default class WebsiteNew extends Component {
             developerId: uid,
             description
           };
-          // call the new website from serverside 
-          await axios.post("/api/website", newWeb);    // 2nd parameter is where you are                                                   sending it to
+          await axios.post("/api/website", newWeb);    // 2nd parameter is where you are sending it to
           this.props.history.push(`/user/${this.state.uid}/website`);
           };
 
@@ -137,8 +136,7 @@ export default class WebsiteNew extends Component {
                         Cancel
                     </Link>
 
-                    <button 
-                      className="btn btn-lg btn-success float-right">
+                    <button className="btn btn-lg btn-success float-right">
                       Submit
                     </button>
                   </form>

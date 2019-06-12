@@ -19,7 +19,7 @@ export default class WidgetYoutube extends Component {
       const {uid, wid, pid, name, width, url} = this.props
         return (
             <div>
-              <nav className="navbar navbar-light fixed top bg-light">
+              <nav className="navbar navbar-light fixed-top bg-light">
               <Link className="color-black"
                     to={`/user/${uid}/website/${wid}/page/${pid}/widget`}>
                     <i className="fas fa-chevron-left" />

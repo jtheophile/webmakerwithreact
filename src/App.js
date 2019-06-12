@@ -40,7 +40,7 @@ class App extends Component {
                       <Route exact path="/user/:uid/website/:wid/page/:pid" component={PageEdit} />
                       <Route exact path="/user/:uid/website/:wid/page/:pid/widget" component={WidgetList} />
                       <Route exact path="/user/:uid/website/:wid/page/:pid/widget/new" component={WidgetChoose} />
-                      <Route exact pather="/user/:uid/website/:wid/page/:pid/widget/:wgid" componenet={WidgetEdit} />
+                      <Route exact path="/user/:uid/website/:wid/page/:pid/widget/:wgid" component={WidgetEdit} />
                   </Switch>
               </Router>
       );

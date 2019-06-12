@@ -33,7 +33,7 @@ module.exports = function(app) {
     //delete widget by give id
     app.delete("/api/widget/:wgid", async (req, res) => {
         const wgid = req.params["wgid"];
-        const data = await widgetsModel.deleteWidget(wgid);        
+        const data = await widgetModel.deleteWidget(wgid);        
         res.json(data);
     });
 };

@@ -48,7 +48,7 @@ export default class Profile extends Component {
             const {username, email, firstName, lastName, password, oldUsername} = this.state;      
                     if(username !== oldUsername) {
                     // check if username is available
-                    const res = await axios.get(`/apt/user?username=${username}`);
+                    const res = await axios.get(`/api/user?username=${username}`);
                     if(res.data){
                         alert("This username is taken, please try something else.");
                         return;
@@ -60,7 +60,7 @@ export default class Profile extends Component {
                         password,
                         email,
                         firstName,
-                        lastName,
+                        lastName
                         }
                         await axios.put("/api/user", newUser);
                         alert("Update Successful!")
@@ -72,8 +72,8 @@ export default class Profile extends Component {
         <div>
             <nav className="navbar navbar-dark bg-primary fixed-top">
             <span className="navbar-brand mb-0 h1">Profile</span>
-                <button className="btn" form="profileform" href="profile.html">
-                    <i className="fas fa-check"></i>
+                <button className="btn" form="profileForm" href="profile.html">
+                    <i className="fas fa-check" />
                 </button>
         </nav>
         <div className="container">
@@ -142,9 +142,9 @@ export default class Profile extends Component {
         </form>
     </div>
     <nav className="navbar navbar-dark bg-primary fixed-bottom">
-        <Link to="/user/123">
+        <span>
             <i className="fas fa-user" />
-        </Link>
+        </span>
     </nav>
     </div>
         );

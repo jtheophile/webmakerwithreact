@@ -32,12 +32,12 @@ export default class WidgetList extends Component {
       const {uid, pid, wid, widgets} = this.state      
         return (
             <div>
-                <nav className="navabar navbar-light fixed-top bg-light">
+                <nav className="navbar navbar-light fixed-top bg-light">
                 <Link className="color-black"
                     to={`/user/${uid}/website/${wid}/page`}>
                     <i className="fas fa-chevron-left" />
-                </Link>
-                <span className="navbar-brand m10">
+                </Link> 
+                <span className="navbar-brand">
                    <b>Widgets</b>
                  </span>
                 <Link className="color-black"
@@ -125,13 +125,13 @@ export default class WidgetList extends Component {
                     }
                 </div>
 
-                <footer className="navabar navbar-light fixed-bottom bg-light">
+                <footer className="navbar navbar-light fixed-bottom bg-light">
                     <div className="full-width">
                         <Link
-                            className="color-black float-left"
-                            to={`/user.${uid}`}>
-                            <i className="fas fa-user" />  
-                        </Link>                
+                            className="color-black float-left" 
+                            to={`/user/${uid}`} >
+                            < i className="fas fa-user" />               
+                        </Link>            
                     </div>
                 </footer>
             </div>
