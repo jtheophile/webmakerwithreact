@@ -7,6 +7,8 @@ if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely | connect wi
   connectionString += '@ds011725.mlab.com:11725/heroku_56h4r1gp'; // use yours
 }
 
+mongodb://<dbuser>:<dbpassword>
+
 //imports the library
 var mongoose = require("mongoose");
 var db = mongoose.connect(
