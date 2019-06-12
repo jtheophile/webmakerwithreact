@@ -9,10 +9,6 @@ if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely | connect wi
 
 //imports the library
 var mongoose = require("mongoose");
-var db = mongoose.connect(
-    connectionString,
-    { useNewUrlParser: true }
-);
-
+var db = mongoose.connect(connectionString, { useNewUrlParser: true });
 
 module.exports = db;
