@@ -15,6 +15,11 @@ export default class Profile extends Component {
     }
     
     async componentDidMount (){
+        const isLoggedIn = await this.props.loggedIn();
+        if(!isLoggedIn) {
+            this.props.history.push("/login"); 
+            return;
+        }
             const uid = this.props.match.params.uid;
             const res = await axios.get(`/api/user/${uid}`);         
             if(res.data){
@@ -64,7 +69,13 @@ export default class Profile extends Component {
                         }
                         await axios.put("/api/user", newUser);
                         alert("Update Successful!")
-                    } 
+                    }
+    //log out function
+    logout = async () => {
+        await axios.post("/api/logout");
+        this.props.history.push("/login");
+    }
+        
                 
     render() {
         const {username, email, firstName, lastName} = this.state;
@@ -77,6 +88,7 @@ export default class Profile extends Component {
                 </button>
         </nav>
         <div className="container">
+            {/*<div className alert="alert alert-success">Update Successful</div>*/}
         <form id="profileForm" onSubmit={this.onSubmit}>
             <div className="form-group">
                 <label htmlFor="username">Username</label> 
@@ -127,18 +139,15 @@ export default class Profile extends Component {
                 onChange={this.onChange}
                 />
             </div>
-
             
                 <Link 
                     className="btn btn-primary btn-block" 
                     to={`/user/${this.props.match.params.uid}/website`} >
                         Websites
                 </Link>
-                <Link 
-                    className="btn btn-danger btn-block" 
-                    to="/login">
+                <button type="button" onClick={this.logout} className="btn btn-danger btn-block" >
                 Logout
-                </Link>                  
+                </button>                  
         </form>
     </div>
     <nav className="navbar navbar-dark bg-primary fixed-bottom">

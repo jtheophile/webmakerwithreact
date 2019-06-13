@@ -21,8 +21,15 @@ import PageEdit from "./components/page/PageEdit";
 import WidgetList from "./components/widget/WidgetList";
 import WidgetChoose from "./components/widget/WidgetChoose";
 import WidgetEdit from "./components/widget/WidgetEdit";
+import Axios from "axios";
 
 class App extends Component {
+
+    //check if user is logged in 
+    loggedIn = async () => {
+        const res = await Axios.get("/api/loggedIn");
+        return res.data !==0;
+    }
 
       render () {
           return (
@@ -31,8 +38,8 @@ class App extends Component {
                       <Route exact path="/" component={Login} />
                       <Route exact path="/login" component={Login} />
                       <Route exact path="/register" component={Register} />
-                      <Route exact path="/user/:uid" component ={Profile} />
-                      <Route exact path="/user/:uid/website" component={WebsiteList} />
+                      <Route exact path="/user/:uid" render={props => <Profile {...props} loggedIn={this.loggedIn} />} />
+                      <Route exact path="/user/:uid/website" render={props => <WebsiteList {...props} loggedIn={this.loggedIn} />} />
                       <Route exact path="/user/:uid/website/new" component={WebsiteNew} />
                       <Route exact path="/user/:uid/website/:wid" component={WebsiteEdit} />
                       <Route exact path="/user/:uid/website/:wid/page" component={PageList} />

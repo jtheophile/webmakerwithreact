@@ -7,12 +7,18 @@ export default class Register extends Component {
       state = {
         username:"",
         password:"",
-        password2:""
+        password2:"",
+        showUsernameAlert: false, 
+        showPasswordAlert: false,
+        showUsernameLengthAlert: false,
+        showPasswordLengthAlert: false
       }
 
       onChange = e => {
         this.setState({
-          [e.target.name]: e.target.value
+          [e.target.name]: e.target.value,
+          showUsernameAlert: false, 
+          showPasswordAlert: false,
         })
       }
 
@@ -25,17 +31,38 @@ export default class Register extends Component {
     }
 
     async register (username, password, password2) {
-        // do the passwords match?
-      if(password !== password2) {
-        alert("The passwords do not match, Please try again.");
+      // check username length
+      if(username.length < 5) {
+        this.setState({
+            showUsernameLengthAlert: true
+        })
+        return;
+      }
+      // check password length
+      if(username.length < 5) {
+        this.setState({
+            showPasswordLengthAlert: true
+        })
         return;
       }
 
-      //check is username is available
+        // do the passwords match?
+      if(password !== password2) {
+        // alert("The passwords do not match, Please try again.");
+        this.setState({
+          showPasswordAlert: true
+        })
+        return;
+      }
+
+            //check is username is available
       const res = await axios.get(`/api/user?username=${username}`);
 
       if(res.data){
-        alert("This username is taken, please try another one");
+        // alert("This username is taken, please try another one");
+        this.setState({
+          showUsernameAlert: true
+        })
         return;
       } else {
          const newUser = {
@@ -46,7 +73,7 @@ export default class Register extends Component {
           lastName: ""
       };   
       //send to server   
-      const res2 = await axios.post("/api/user", newUser);
+      const res2 = await axios.post("/api/register", newUser);
       this.props.history.push(`/user/${res2.data._id}`);
   }
 
@@ -58,6 +85,15 @@ export default class Register extends Component {
       <div>
         <div className="container">
         <h1>Register</h1> 
+
+          {this.state.showPasswordAlert && (<div className="alert alert-danger">Your credentials don't match.</div>)}
+
+          {this.state.showUsernameAlert && (<div className="alert alert-danger">Try another username, this one is taken.</div>)}
+
+          {this.state.showUsernameLengthAlert && (<div className="alert alert-danger">Your Username is too short, please make at least 6 characters.</div>)}
+
+          {this.state.showPasswordLengthAlert && (<div className="alert alert-danger">Your password is too short, please make at least 6 character.</div>)}
+
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label htmlFor="password">Username</label>

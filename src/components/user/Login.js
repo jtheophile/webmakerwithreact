@@ -8,11 +8,13 @@ export default class Login extends Component {
     state = {
         username: "",
         password: "",
+        showAlert: false
     }
 
     onChange = e => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            showAlert: false
         })
     }
 
@@ -27,19 +29,33 @@ export default class Login extends Component {
     }
 
     login = async user => {
-        // show me the info if it matches
-        const res = await axios.get(`/api/user?username=${user.username}&password=${user.password}`)
-        if(res.data) {
+        try {
+            const res = await axios.post('/api/login', user);
             this.props.history.push(`/user/${res.data._id}`);
-        } else {
-            alert("invalid credentials, please try again");
-            }
+        } catch {
+            this.setState({
+                showAlert: true
+            })
         }
+        // show me the info if it matches
+        // const res = await axios.post('/api/login', user);
+        // if(res.data) {
+        //     this.props.history.push(`/user/${res.data._id}`);
+        // } else {
+        //     alert("invalid credentials, please try again");
+        //     }
+        // 
+    }
 
     render() {
         return (
             <div className="container">
             <h1>Login</h1>
+                {
+                    this.state.showAlert?
+                    (<div className="alert alert-danger">Your credentials don't match</div>): null
+                }
+
                 <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label htmlFor="username">Username</label> 
