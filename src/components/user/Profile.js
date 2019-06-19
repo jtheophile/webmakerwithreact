@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Footer from "../utility/Footer";
+import Navbar from "../utility/Navbar"
 
 export default class Profile extends Component {
 
@@ -79,14 +81,10 @@ export default class Profile extends Component {
                 
     render() {
         const {username, email, firstName, lastName} = this.state;
+        const { uid } = this.props.match.params;
         return (
         <div>
-            <nav className="navbar navbar-dark bg-primary fixed-top">
-            <span className="navbar-brand mb-0 h1">Profile</span>
-                <button className="btn" form="profileForm" href="profile.html">
-                    <i className="fas fa-check" />
-                </button>
-        </nav>
+            <Navbar title="Profile" rightBtn="check" form="profileForm" />
         <div className="container">
             {/*<div className alert="alert alert-success">Update Successful</div>*/}
         <form id="profileForm" onSubmit={this.onSubmit}>
@@ -150,11 +148,7 @@ export default class Profile extends Component {
                 </button>                  
         </form>
     </div>
-    <nav className="navbar navbar-dark bg-primary fixed-bottom">
-        <span>
-            <i className="fas fa-user" />
-        </span>
-    </nav>
+        <Footer uid={uid} />
     </div>
         );
     }

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import React, { Component } from 'react';
 import axios from "axios";
+import Footer from "../utility/Footer"
+import Navbar from "../utility/Navbar"
 
 export default class WebsiteList extends Component {
-
-  
 
     state= {
       uid: this.props.match.params.uid,
@@ -29,7 +29,13 @@ export default class WebsiteList extends Component {
     const {uid} = this.state
      return (
          <div>
-            <nav className="navbar navbar-dark bg-primary fixed-top">
+           <Navbar 
+           backBtn={`/user/${uid}`} 
+           title="Websites" 
+           rightBtn="plus" 
+           rightsBtn2={`/user/${uid}/website/new`}  
+          />
+            {/* <nav className="navbar navbar-dark bg-primary fixed-top">
                 <Link to={`/user/${uid}`} >
                     <i className="fas fa-chevron-left" />
                 </Link>
@@ -40,7 +46,7 @@ export default class WebsiteList extends Component {
                    to={`/user/${uid}/website/new`} >
                    <i className="fas fa-plus" />
                 </Link>
-            </nav>
+            </nav> */}
 
             <section className="container">
                  <ul className="list-group"> 
@@ -60,15 +66,7 @@ export default class WebsiteList extends Component {
                 </ul> 
              </section>
 
-             <nav className="navbar navbar-dark bg-primary fixed-bottom">
-                <div className="full-width">
-                  <Link 
-                      className="color-white float right" 
-                      to={`/user/${uid}`} >
-                      <i className="fas fa-user" />
-                  </Link>
-                    </div>
-                </nav>
+             <Footer uid={uid} />
               </div>
                 );
               }

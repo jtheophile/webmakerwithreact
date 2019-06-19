@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../utility/Footer"
 
 export default class WidgetHeading extends Component {
 
@@ -85,15 +86,7 @@ export default class WidgetHeading extends Component {
                         </form>
                     </div>
 
-                    <footer className="navbar navbar-light fixed-bottom bg-light">
-                        <div clasSName="full-width">
-                            <Link 
-                                className="color-black float-right"
-                                to={`/user/${uid}`}>
-                                <i className="fas fa-user"/>
-                            </Link>
-                        </div>
-                    </footer>
+                    <Footer uid={uid} />
                 </div>
             );
         }

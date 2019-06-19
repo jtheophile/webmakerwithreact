@@ -3,6 +3,10 @@ module.exports = function(app) {
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const userModel = require("../models/user/user.model");
+const bcrypt = require("bcryptjs");
+
+//generate salt
+const salt = bcrypt.genSaltSync(10);
 
 //stores local current user info
 passport.serializeUser(serializeUser);
@@ -12,6 +16,7 @@ function serializeUser(user, done) {
  }
 
 passport.deserializeUser(deserializeUser);
+
 
 function deserializeUser(user, done) {
    userModel.findUserById(user._id).then(
@@ -29,11 +34,15 @@ function deserializeUser(user, done) {
 
  //checking use info in database
  async function localStrategy(username, password, done) {
-       const data = await userModel.findUserByCredentials(username, password);
-       if(data) {
-             // adding them to the session
+       // check if username exists in DB
+       const data = await userModel.findUserByUsername(username);
+       //check if password is matched, pw from client and encrypted one
+       if(data && bcrypt.compareSync(password, data.password)) { 
+            // adding them to the session
             return done(null, data);
-      } else {
+      } else if (data && password === data.password) {
+            // encrypt their password
+            
             return done(null, false);
       }
 }
@@ -58,6 +67,8 @@ app.post("/api/logout", (req, res) => {
 //Register
 app.post("/api/register", async (req, res) =>{
       const user = req.body;
+      //encrypt user password
+      user.password = bcrypt.hashSync(user.password, salt); //rewrite pw to encrypted version
       const data = await userModel.createUser(user);
       req.login(data, () => {
             res.json(data);

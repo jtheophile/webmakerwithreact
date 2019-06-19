@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import Footer from "../utility/Footer"
 
 export default class WidgetImage extends Component {
 
@@ -84,14 +85,7 @@ export default class WidgetImage extends Component {
                   </button>
               </form>
           </div>
-          <footer className="navbar navbar-light fixed-bottom bg-light">
-            <div className="full-width">
-              <Link className="color-black float-right"
-                to={`/user/${uid}`}>
-                <i className="fas fa-user" />
-              </Link>
-            </div>
-          </footer>
+          <Footer uid={uid} />
         </div>
       );
     }

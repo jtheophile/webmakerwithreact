@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Footer from "../utility/Footer"
 
 export default class WebsiteNew extends Component {
       state = {
@@ -144,16 +145,9 @@ export default class WebsiteNew extends Component {
               </div>
             </div>
 
-            <nav className="navbar navbar-dark bg-primary fixed-bottom">
-                <div className="full-width">
-                  <Link 
-                      className="color-white float right" 
-                      to={`/user/${uid}`} >
-                      <i className="fas fa-user" />
-                  </Link>
-                    </div>
-                </nav>
-              </div>
-                );
-              }
-            }
+            <Footer uid={uid} />
+              
+            </div>
+          );
+        }
+      }
