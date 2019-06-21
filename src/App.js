@@ -10,6 +10,7 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import Profile from "./components/user/Profile";
 //sites
+
 import WebsiteList from "./components/website/WebsiteList";
 import WebsiteNew from "./components/website/WebsiteNew";
 import WebsiteEdit from "./components/website/WebsiteEdit"
@@ -22,13 +23,14 @@ import WidgetList from "./components/widget/WidgetList";
 import WidgetChoose from "./components/widget/WidgetChoose";
 import WidgetEdit from "./components/widget/WidgetEdit";
 import Axios from "axios";
+import UserManage from "./components/user/UserManage";
 
 class App extends Component {
 
     //check if user is logged in 
     loggedIn = async () => {
         const res = await Axios.get("/api/loggedIn");
-        return res.data !==0;
+        return res.data;
     }
 
       render () {
@@ -38,6 +40,7 @@ class App extends Component {
                       <Route exact path="/" component={Login} />
                       <Route exact path="/login" component={Login} />
                       <Route exact path="/register" component={Register} />
+                      <Route exact path="/manage" render={props => <UserManage {...props} loggedIn={this.loggedIn} /> } />
                       <Route exact path="/user/:uid" render={props => <Profile {...props} loggedIn={this.loggedIn} />} />
                       <Route exact path="/user/:uid/website" render={props => <WebsiteList {...props} loggedIn={this.loggedIn} />} />
                       <Route exact path="/user/:uid/website/new" component={WebsiteNew} />

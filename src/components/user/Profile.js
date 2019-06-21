@@ -13,12 +13,13 @@ export default class Profile extends Component {
         password:"",
         firstName:"", 
         lastName:"",
-        oldUsername:""
+        oldUsername:"",
+        role: ""
     }
     
     async componentDidMount (){
         const isLoggedIn = await this.props.loggedIn();
-        if(!isLoggedIn) {
+        if(isLoggedIn ===0) {         //if it is 0, navigate back to the login page
             this.props.history.push("/login"); 
             return;
         }
@@ -33,16 +34,17 @@ export default class Profile extends Component {
     
     // display
     showUser = (user) => {
-        const  {username, email, firstName, lastName, password} = user;
+        const  {username, email, firstName, lastName, password, role} = user;
         this.setState({
             username, 
             email, 
             firstName, 
             lastName, 
             password, 
-            oldUsername: username
+            oldUsername: username,
+            role
             });
-        }    
+        };    
 
         onChange = e => {
             this.setState({
@@ -80,7 +82,7 @@ export default class Profile extends Component {
         
                 
     render() {
-        const {username, email, firstName, lastName} = this.state;
+        const {username, email, firstName, lastName, role} = this.state;
         const { uid } = this.props.match.params;
         return (
         <div>
@@ -145,11 +147,15 @@ export default class Profile extends Component {
                 </Link>
                 <button type="button" onClick={this.logout} className="btn btn-danger btn-block" >
                 Logout
-                </button>                  
-        </form>
-    </div>
-        <Footer uid={uid} />
-    </div>
-        );
-    }
-}
+                </button>
+                {role ==='admin'? (
+                    <Link className='btn btn-warning btn-block' to='/manage' >Manage Users
+                    </Link>
+                    ) : null}             
+                </form>
+            </div>
+                <Footer uid={uid} />
+            </div>
+                );
+            }
+        }

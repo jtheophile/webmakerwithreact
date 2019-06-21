@@ -40,29 +40,33 @@ function deserializeUser(user, done) {
        if(data && bcrypt.compareSync(password, data.password)) { 
             // adding them to the session
             return done(null, data);
+            //check if this user's password hasn't been encrypted
       } else if (data && password === data.password) {
             // encrypt their password
-            
+            data.password = bcrypt.hashSync(data.password, salt);
+            await userModel.updateUser(data);
+            return done(null, data);
+      } else {
             return done(null, false);
-      }
+      } 
 }
 
-// Login, pushing back to client 
+// Login  (pushing back to client)
 app.post("/api/login", passport.authenticate("local"), (req, res) => {
       const user = req.user;
       res.json(user);
-})
+});
 
 //check if there is a user logged in
 app.get("/api/loggedIn", (req, res) => {
       res.send(req.isAuthenticated()? req.user: "0")
-})
+});
 
 // to logout 
 app.post("/api/logout", (req, res) => {
       req.logOut();
       res.send(200);
-})
+});
 
 //Register
 app.post("/api/register", async (req, res) =>{
@@ -72,8 +76,8 @@ app.post("/api/register", async (req, res) =>{
       const data = await userModel.createUser(user);
       req.login(data, () => {
             res.json(data);
-      })
-})
+      });
+});
 
 // find users by username and password 
 app.get("/api/user", async (req, res)=> {
@@ -109,4 +113,17 @@ app.get("/api/user", async (req, res)=> {
             const data = await userModel.updateUser(newUser);
             res.json(data);
       });
+
+      //final all users
+      app.get("/api/users", async (req, res) => {
+            const data = await userModel.findAllUsers();
+            res.json(data);
+      });
+
+      //delete user
+      app.delete("/api/user/:id", async (req, res) =>{
+            const id = req.params["id"];
+            const data = await userModel.deleteUser(id);
+            res.json(data);
+      })
 };
