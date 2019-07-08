@@ -88,7 +88,7 @@ export default class Profile extends Component {
         <div>
             <Navbar title="Profile" rightBtn="check" form="profileForm" />
         <div className="container">
-            {/*<div className alert="alert alert-success">Update Successful</div>*/}
+            <div className alert="alert alert-success">Update Successful</div>
         <form id="profileForm" onSubmit={this.onSubmit}>
             <div className="form-group">
                 <label htmlFor="username">Username</label> 
